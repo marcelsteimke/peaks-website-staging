@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<rect width="800" height="600" fill="#12333B"></rect>
+<g transform="translate(80 70) scale(1.6)"><path d="M13 100 L13 13 H87 V100" fill="none" stroke="#F4F1EA" stroke-width="14"></path><path d="M38 100 L38 38 H62 V100" fill="none" stroke="#C8552A" stroke-width="12"></path></g>
+<text x="80" y="350" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="96" letter-spacing="-2.8" fill="#F4F1EA">Zurich</text>
+<text x="80" y="450" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="96" letter-spacing="-2.8" fill="#F4F1EA">Biosecurity</text>
+<text x="80" y="550" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="96" letter-spacing="-2.8" fill="#F4F1EA">Hub</text>
+</svg>

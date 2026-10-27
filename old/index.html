@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- STAGING:START -->
+    <meta name="robots" content="noindex, nofollow">
+    <!-- STAGING:END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEAKS Zürich - EA & AI Safety Co-working Space</title>
+    <meta name="description" content="PEAKS Zürich is a collaborative co-working space for professionals working in Effective Altruism and AI Safety research in the heart of Zürich.">
+    <meta name="keywords" content="PEAKS, Zürich, co-working, effective altruism, AI safety, workspace, collaboration">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://lu.ma https://www.google.com https://maps.google.com; frame-src 'self' https://lu.ma https://www.google.com; img-src 'self' data: https:;">>
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-teal: #2d6a6b;
+            --accent-teal: #319795;
+            --light-gray: #f7fafc;
+            --medium-gray: #e2e8f0;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--medium-gray);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-blue);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 50%, var(--light-gray) 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>') repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--accent-teal);
+            color: white;
+            box-shadow: 0 4px 15px rgba(49, 151, 149, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(49, 151, 149, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-logo {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Community Section */
+        .community {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .community-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .community-text p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .organizations {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .org-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .org-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .org-card h4 {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .org-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .location-info h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .location-details {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .location-details h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .location-details p {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Events Section */
+        .events {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .events-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .events-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .events-intro p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .luma-embed {
+            margin: 3rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .events-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .events-cta p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-teal);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .community-grid,
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .organizations {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STAGING:START -->
+    <a href="https://peaks-office.ch/" style="position:fixed;left:12px;bottom:12px;z-index:99999;background:#D7261E;color:#fff;font:600 12px/1 system-ui,sans-serif;letter-spacing:.03em;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">STAGING · not the live site</a>
+    <!-- STAGING:END -->
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                <svg class="logo-img" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Mountains -->
+                    <path d="M50 250 L150 150 L200 180 L250 120 L350 200 L350 350 L50 350 Z" 
+                          fill="#1a365d" stroke="none"/>
+                    <path d="M100 280 L180 200 L230 230 L280 170 L350 230 L350 350 L100 350 Z" 
+                          fill="#2d6a6b" stroke="none"/>
+                    <path d="M150 300 L220 230 L270 260 L320 200 L350 250 L350 350 L150 350 Z" 
+                          fill="#319795" stroke="none"/>
+                    
+                    <!-- Sun -->
+                    <circle cx="320" cy="80" r="25" fill="#319795"/>
+                    
+                    <!-- Text -->
+                    <text x="200" y="320" text-anchor="middle" font-family="Inter, sans-serif" 
+                          font-size="48" font-weight="700" fill="#1a365d">PEAKS</text>
+                </svg>
+                PEAKS
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text fade-in">
+                <h1>Welcome to PEAKS</h1>
+                <p class="subtitle">Zürich's Premier Co-working Space for EA & AI Safety</p>
+                <p class="description">
+                    A collaborative workspace in the heart of Zürich where passionate individuals working in 
+                    Effective Altruism and AI Safety research come together to tackle the world's most pressing challenges.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in">
+                <svg class="hero-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Mountains -->
+                    <path d="M50 250 L150 150 L200 180 L250 120 L350 200 L350 350 L50 350 Z" 
+                          fill="#1a365d" stroke="none"/>
+                    <path d="M100 280 L180 200 L230 230 L280 170 L350 230 L350 350 L100 350 Z" 
+                          fill="#2d6a6b" stroke="none"/>
+                    <path d="M150 300 L220 230 L270 260 L320 200 L350 250 L350 350 L150 350 Z" 
+                          fill="#319795" stroke="none"/>
+                    
+                    <!-- Sun -->
+                    <circle cx="320" cy="80" r="25" fill="#319795"/>
+                    
+                    <!-- Text -->
+                    <text x="200" y="320" text-anchor="middle" font-family="Inter, sans-serif" 
+                          font-size="48" font-weight="700" fill="#1a365d">PEAKS</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Upcoming Events</h2>
+                <p>Join our community events, workshops, and discussions on EA and AI Safety topics</p>
+            </div>
+            <div class="events-content fade-in">
+                <div class="events-intro">
+                    <p>
+                        PEAKS regularly hosts events in collaboration with EA Zürich and the broader Swiss EA community. 
+                        From research presentations to networking sessions, our events provide opportunities to connect, 
+                        learn, and collaborate with like-minded individuals.
+                    </p>
+                </div>
+                <div class="luma-embed">
+                    <iframe 
+                        src="https://lu.ma/embed/calendar/cal-R6qQtskEzr9rQLh/events?lt=light"
+                        width="100%" 
+                        height="600" 
+                        frameborder="0" 
+                        style="border: 1px solid #bfcbda88; border-radius: 12px; background: white;"
+                        allowfullscreen=""
+                        aria-hidden="false"
+                        tabindex="0"
+                        title="EA Zürich Events Calendar">
+                    </iframe>
+                </div>
+                <div class="events-cta">
+                    <p>Want to stay updated on all events? Check out our full calendar and RSVP directly through Luma.</p>
+                    <a href="https://lu.ma/eazurich?k=c" target="_blank" class="btn btn-primary">View Full Calendar</a>
+                </div>
+            </div>
+        </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Why PEAKS?</h2>
+                <p>A modern workspace designed for impactful collaboration and meaningful research</p>
+            </div>
+            <div class="features">
+                <div class="feature fade-in">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Collaborative Environment</h3>
+                    <p>Connect with like-minded professionals working on EA and AI Safety projects. Foster meaningful relationships and cross-disciplinary collaboration.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Focused Community</h3>
+                    <p>Be part of a dedicated community focused on making the world a better place through evidence-based approaches and cutting-edge AI safety research.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Prime Location</h3>
+                    <p>Located in the vibrant heart of Zürich, with excellent transport connections and access to the city's thriving tech and research ecosystem.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">💡</div>
+                    <h3>Innovation Hub</h3>
+                    <p>Access to modern facilities, meeting rooms, and resources designed to support breakthrough research and innovative project development.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Network</h3>
+                    <p>Connect with the international EA and AI Safety communities through events, workshops, and collaborative opportunities.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">📚</div>
+                    <h3>Learning Environment</h3>
+                    <p>Regular seminars, discussion groups, and learning opportunities to stay at the forefront of EA principles and AI safety developments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <div class="community-grid">
+                <div class="community-text fade-in">
+                    <h2>Our Community</h2>
+                    <p>
+                        PEAKS hosts a diverse and talented community of researchers, practitioners, and organizations 
+                        working at the intersection of effective altruism and AI safety. Our members are united by a 
+                        shared commitment to using evidence and reason to tackle the world's most pressing problems.
+                    </p>
+                    <p>
+                        From established organizations to independent researchers, our community spans multiple disciplines 
+                        and approaches, creating a rich environment for collaboration and knowledge exchange.
+                    </p>
+                </div>
+                <div class="organizations fade-in">
+                    <div class="org-card">
+                        <h4>Apollo Research</h4>
+                        <p>AI Safety Research</p>
+                    </div>
+                    <div class="org-card">
+                        <h4>EA Switzerland</h4>
+                        <p>Effective Altruism</p>
+                    </div>
+                    <div class="org-card">
+                        <h4>Independent Researchers</h4>
+                        <p>Various EA Fields</p>
+                    </div>
+                    <div class="org-card">
+                        <h4>Visiting Scholars</h4>
+                        <p>International Collaboration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <div class="container">
+            <div class="location-content">
+                <div class="location-info fade-in">
+                    <h2>Find Us in Zürich</h2>
+                    <p>
+                        PEAKS is strategically located in Zürich, Switzerland's largest city and a global hub for 
+                        finance, technology, and research. Our workspace provides easy access to universities, 
+                        research institutions, and the vibrant Swiss tech ecosystem.
+                    </p>
+                    <div class="location-details">
+                        <h3>Address</h3>
+                        <p>Zeughausstrasse 31</p>
+                        <p>8004 Zürich, Switzerland</p>
+                        <p>Easy access via public transportation</p>
+                        <p>Close to ETH Zurich and University of Zurich</p>
+                    </div>
+                    <p>
+                        Contact us for specific address details and access information. We're always happy to 
+                        arrange visits for prospective members and collaborators.
+                    </p>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.3469469!2d8.5310775!3d47.3743889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47900a0c5a4e2a05%3A0x9a1b1b1b1b1b1b1b!2sZeughausstrasse%2031%2C%208004%20Z%C3%BCrich%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1642000000000!5m2!1sen!2sch"
+                        width="100%" 
+                        height="400" 
+                        style="border:0; border-radius: 12px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="PEAKS Office Location">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="fade-in">
+                <h2>Get In Touch</h2>
+                <p>Interested in joining our community or learning more about PEAKS? We'd love to hear from you.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:zurich-office@effectivealtruism.ch">zurich-office@effectivealtruism.ch</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>🌐</span>
+                        <a href="https://www.effectivealtruism.ch/" target="_blank">EA Switzerland</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Zeughausstrasse 31, 8004 Zürich</span>
+                    </div>
+                </div>
+                <div class="cta-buttons" style="margin-top: 2rem;">
+                    <a href="mailto:zurich-office@effectivealtruism.ch" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PEAKS Zürich. A collaborative space for EA and AI Safety research.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (basic implementation)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Form validation for email links
+        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const email = this.getAttribute('href').replace('mailto:', '');
+                if (!email.includes('@') || !email.includes('.')) {
+                    e.preventDefault();
+                    alert('Please check the email address format.');
+                }
+            });
+        });
+
+        // Basic XSS protection for any dynamic content
+        function sanitizeInput(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // Performance optimization: Lazy load images if any are added later
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Error handling for external links
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                try {
+                    // Add rel="noopener noreferrer" for security
+                    this.setAttribute('rel', 'noopener noreferrer');
+                } catch (error) {
+                    console.warn('Error setting link attributes:', error);
+                }
+            });
+        });
+
+        // Simple analytics placeholder (replace with actual analytics if needed)
+        function trackEvent(action, category = 'General') {
+            // Placeholder for analytics tracking
+            console.log(`Event tracked: ${category} - ${action}`);
+        }
+
+        // Track CTA button clicks
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const buttonText = this.textContent.trim();
+                trackEvent(`Button Click: ${buttonText}`, 'CTA');
+            });
+        });
+    </script>
+</body>
+</html>
