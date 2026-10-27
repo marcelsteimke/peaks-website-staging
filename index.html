@@ -9,1119 +9,818 @@
     <title>PEAKS Zurich</title>
     <meta name="description" content="PEAKS Zurich is a collaborative coworking space for professionals working in Effective Altruism, AI Safety and Biosecurity in the heart of Zurich.">
     <meta name="keywords" content="PEAKS, Zurich, coworking, effective altruism, AI safety, biosecurity, workspace, collaboration">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/peaks-no-text-circle.png">
-    
+    <link rel="icon" type="image/png" href="assets/peaks-no-text-circle.png">
+
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://lu.ma https://luma.com https://www.google.com https://maps.google.com; frame-src 'self' https://lu.ma https://luma.com https://www.google.com; img-src 'self' data: https:;">>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://lu.ma https://luma.com https://www.google.com https://maps.google.com; frame-src 'self' https://lu.ma https://luma.com https://www.google.com; img-src 'self' data: https:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@600&display=swap" rel="stylesheet">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=IBM+Plex+Sans+Condensed:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geist:wght@600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary-blue: #1a365d;
-            --secondary-teal: #2d6a6b;
-            --accent-teal: #319795;
-            --light-gray: #f7fafc;
-            --medium-gray: #e2e8f0;
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--medium-gray);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            margin-right: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-teal);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-teal);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-blue);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 50%, var(--light-gray) 100%);
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>') repeat;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero-text .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-text .description {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-        }
-
-        .ea-ai-highlight {
-            background: rgba(49, 151, 149, 0.9);
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            margin: 1.5rem 0;
-            text-align: center;
-        }
-
-        .ea-ai-highlight .ea-ai-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 3.4rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--accent-teal);
-            color: white;
-            box-shadow: 0 4px 15px rgba(49, 151, 149, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-teal);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(49, 151, 149, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-blue);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-logo {
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Section Base Styles */
-        section {
-            padding: 4rem 0;
-        }
-
-        /* Location Section */
-        .location {
-            background: var(--white);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .location-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .location-info h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .location-details {
-            background: var(--light-gray);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-
-        .location-details h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .address-main {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.2rem;
-        }
-
-        .address-city {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .location-extras {
-            background: var(--medium-gray);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .location-extras p {
-            color: var(--text-light);
-            margin-bottom: 0.3rem;
-            font-size: 0.95rem;
-        }
-
-        .map-container {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .map-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Events Section */
-        .events {
-            background: var(--light-gray);
-        }
-
-        .events-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .events-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .events-text p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .events-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .events-cta p {
-            margin-bottom: 1.5rem;
-        }
-
-        .luma-embed {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            background: white;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--white);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 12px;
-            background: var(--light-gray);
-            transition: all 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent-teal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .feature h3 {
-            font-size: 1.3rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .feature p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Community Section */
-        .community {
-            background: var(--light-gray);
-        }
-
-        .community-text {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
-        .community-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .community-text p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .organizations {
-            display: grid;
-            /* minmax(0, …) keeps the columns equal; a wide logo shrinks instead of widening its column */
-            grid-template-columns: repeat(6, minmax(0, 1fr));
-            grid-auto-rows: 1fr;
-            gap: 1rem;
-        }
-
-        .org-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            grid-column: span 2;
-            min-height: 170px;
-        }
-
-        .org-card.org-text {
-            grid-column: span 3;
-        }
-
-        .org-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Each logo sets its own --logo-h so they all carry a similar visual weight:
-           wide wordmarks get less height, compact or boxed logos more.
-           The logo files are trimmed to their visible edges for this to work. */
-        .org-logo {
-            height: var(--logo-h, 80px);
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-        }
-
-        /* Organizations without a clear logo: their name as it appears on their site */
-        .org-name {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            font-size: clamp(1.25rem, 2.8vw, 2.2rem);
-            white-space: nowrap;
-        }
-
-        .org-name img {
-            width: 1.9em;
-            height: 1.9em;
-        }
-
-        .org-name.eurosafeai {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 700;
-            color: #022583;
-        }
-
-        .org-name.zais {
-            font-family: 'Geist', sans-serif;
-            font-weight: 600;
-            color: #020522;
-        }
-
-        .org-card h4 {
-            color: var(--primary-blue);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .org-card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--primary-blue);
-            color: white;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent-teal);
-        }
-
-        .contact .cta-buttons {
-            justify-content: center;
-            margin-top: 2rem;
-        }
+            --paper: #F3EFE4;
+            --paper-2: #EAE3D3;
+            --navy: #12294A;
+            --ink: #2B2925;
+            --text: #3A362F;
+            --muted: #625B4E;
+            --red: #D7261E;
+            --sign: #FFD200;
+            --teal: #0B7F91;
+            --line: rgba(18, 41, 74, .16);
+            --cond: 'IBM Plex Sans Condensed', sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--paper); color: var(--ink); font: 400 16px/1.6 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+        img { display: block; max-width: 100%; }
+        section { scroll-margin-top: 64px; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+        /* Header */
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(243, 239, 228, .9);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+        header nav { max-width: 1240px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+        .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 800; font-size: 21px; letter-spacing: .05em; }
+        .brand img { height: 26px; width: auto; }
+        .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+        .nav-links a { font: 500 12.5px var(--cond); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--navy); padding: 8px 10px; }
+        .nav-links a:hover { color: var(--red); }
+        .menu { display: none; width: 40px; height: 40px; background: none; border: 0; cursor: pointer; }
+        .menu span { display: block; height: 2px; margin: 6px 9px; background: var(--navy); }
+
+        /* Buttons: a yellow Swiss hiking signpost, and an outlined map-key button */
+        .sign { display: inline-flex; flex-direction: column; text-decoration: none; color: #111; background: var(--sign);
+            padding: 10px 36px 10px 15px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%);
+            font-weight: 800; font-size: 15.5px; line-height: 1.25; transition: transform .15s; }
+        .sign small { font: 500 10.5px var(--cond); letter-spacing: .07em; text-transform: uppercase; opacity: .75; }
+        .sign:hover { transform: translateX(3px); }
+        .nav-links .sign { margin-left: 12px; padding: 7px 28px 7px 12px; font: 700 13px 'Inter Tight', sans-serif; letter-spacing: 0; text-transform: none; color: #111; }
+        .nav-links .sign:hover { color: #111; }
+        .btn-line { display: inline-flex; align-items: center; font: 600 13px var(--cond); letter-spacing: .1em; text-transform: uppercase;
+            text-decoration: none; color: var(--navy); border: 1.5px solid var(--navy); padding: 11px 16px; transition: background .15s, color .15s; }
+        .btn-line:hover { background: var(--navy); color: var(--paper); }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 26px; }
+
+        /* Hero: the relief map */
+        .hero { position: relative; height: 100vh; height: 100svh; min-height: 680px; overflow: hidden; }
+        .hero canvas { position: absolute; inset: 0; display: block; }
+        #relief { touch-action: pan-y; cursor: crosshair; }
+        #overlay { pointer-events: none; }
+        .legend { position: absolute; left: 28px; bottom: 28px; width: min(480px, calc(100% - 32px)); background: rgba(243, 239, 228, .95);
+            border: 1.5px solid var(--navy); padding: 22px 24px 20px; box-shadow: 5px 5px 0 rgba(18, 41, 74, .14); }
+        .sheet { display: flex; justify-content: space-between; font: 500 11px var(--cond); letter-spacing: .12em; text-transform: uppercase;
+            color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 16px; }
+        .legend h1 { font-weight: 800; font-size: clamp(27px, 3.1vw, 38px); line-height: 1.04; letter-spacing: -.02em; color: var(--navy); margin-bottom: 14px; }
+        .legend h1 em { font-style: normal; color: var(--red); }
+        .legend .lede { font-size: 14.5px; line-height: 1.55; color: var(--text); margin-bottom: 16px; }
+        .keys { list-style: none; display: grid; gap: 6px; font: 400 12.5px var(--cond); color: var(--muted); margin-bottom: 16px; }
+        .keys li { display: flex; align-items: center; gap: 10px; }
+        .keys i { width: 30px; display: inline-flex; justify-content: center; flex: none; }
+        .legend .foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+        .scale { font: 400 10px var(--cond); color: var(--muted); }
+        .scale .bar { display: flex; margin-top: 4px; }
+        .scale .bar span { width: 26px; height: 5px; border: 1px solid var(--navy); }
+        .scale .bar span:nth-child(odd) { background: var(--navy); }
+        .alt { position: fixed; z-index: 60; pointer-events: none; transform: translate(14px, -38px); background: var(--navy); color: var(--paper);
+            font: 500 12px var(--cond); letter-spacing: .04em; padding: 5px 8px; white-space: nowrap; opacity: 0; transition: opacity .15s; }
+        .alt b { font-weight: 600; color: var(--sign); }
+        .alt.on { opacity: 1; }
+        .nogl { position: absolute; top: 40%; left: 50%; transform: translateX(-50%); font: 500 14px var(--cond); color: var(--muted); display: none; }
+
+        /* Sections */
+        .section { padding: 110px 0; }
+        .section.tinted { background: var(--paper-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900' fill='none' stroke='%239C7048' stroke-opacity='.14' stroke-width='1.2'%3E%3Cg transform='rotate(-14 1150 190)'%3E%3Cellipse cx='1150' cy='190' rx='40' ry='26'/%3E%3Cellipse cx='1150' cy='190' rx='90' ry='60'/%3E%3Cellipse cx='1150' cy='190' rx='145' ry='98'/%3E%3Cellipse cx='1150' cy='190' rx='205' ry='140'/%3E%3Cellipse cx='1150' cy='190' rx='270' ry='186'/%3E%3Cellipse cx='1150' cy='190' rx='340' ry='236'/%3E%3C/g%3E%3Cg transform='rotate(18 160 760)'%3E%3Cellipse cx='160' cy='760' rx='34' ry='22'/%3E%3Cellipse cx='160' cy='760' rx='80' ry='52'/%3E%3Cellipse cx='160' cy='760' rx='132' ry='86'/%3E%3Cellipse cx='160' cy='760' rx='190' ry='124'/%3E%3Cellipse cx='160' cy='760' rx='252' ry='166'/%3E%3C/g%3E%3C/svg%3E") center / cover no-repeat; }
+        .kicker { display: flex; align-items: center; gap: 12px; font: 600 12px var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+        .kicker::after { content: ''; width: 64px; border-top: 2px dashed var(--red); }
+        h2 { font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); margin-bottom: 18px; }
+        h3 { font-weight: 700; font-size: 18px; color: var(--navy); }
+        .section p { color: var(--text); }
+        .section p + p { margin-top: 14px; }
+        .section a:not(.sign):not(.btn-line):not(.org-card) { color: var(--navy); text-decoration-color: var(--red); text-underline-offset: 3px; }
+        .section .lead { font-size: 19px; font-weight: 500; color: var(--navy); }
+        .two { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+        .frame { border: 1.5px solid var(--navy); box-shadow: 6px 6px 0 rgba(18, 41, 74, .12); background: #fff; overflow: hidden; }
+        .frame iframe { display: block; width: 100%; border: 0; }
+
+        /* 01 Welcome */
+        .focus { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0; }
+        .focus li { display: flex; align-items: center; gap: 8px; font: 600 13px var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--navy);
+            border: 1.5px solid var(--navy); padding: 8px 12px; background: rgba(255, 255, 255, .5); }
+        .focus li::before { content: ''; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid var(--red); }
+        .section .pin { display: flex; align-items: center; gap: 8px; margin-top: 18px; font-weight: 600; color: var(--navy); }
+        .logo-panel { padding: 56px 48px; display: grid; place-items: center; }
+        .logo-panel img { width: min(100%, 420px); }
+        .logo-panel figcaption { margin-top: 22px; font: 500 11px var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+        /* 02 Location */
+        .address { margin: 26px 0; padding: 18px 20px; border-left: 3px solid var(--red); background: rgba(255, 255, 255, .55); }
+        .address h3 { font: 600 11.5px var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+        .section .address .addr { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+        .address ul { list-style: none; margin-top: 12px; display: grid; gap: 6px; font-size: 14.5px; color: var(--text); }
+        .address li { display: flex; gap: 10px; }
+        .address li::before { content: '—'; color: var(--red); }
+        .map iframe { height: 500px; }
+
+        /* 03 Events */
+        .events-grid { align-items: start; }
+        .luma iframe { height: 520px; }
+
+        /* 04 Why PEAKS */
+        .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 34px; }
+        .feature { background: rgba(255, 255, 255, .7); border: 1px solid var(--line); padding: 26px 24px; }
+        .feature svg { display: block; margin-bottom: 16px; }
+        .feature h3 { margin-bottom: 8px; }
+        .feature p { font-size: 15px; }
+
+        /* 05 Community */
+        .community-intro { max-width: 820px; }
+        .organizations { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 14px; margin-top: 40px; }
+        .org-card { background: #fff; border: 1px solid var(--line); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; text-decoration: none; color: inherit; grid-column: span 2; min-height: 170px; transition: transform .2s, box-shadow .2s; }
+        .org-card.org-text { grid-column: span 3; background: rgba(255, 255, 255, .55); }
+        .org-card:hover { transform: translateY(-3px); box-shadow: 5px 5px 0 rgba(18, 41, 74, .12); }
+        /* Each logo sets its own --logo-h so they carry a similar visual weight; the files are trimmed to their visible edges */
+        .org-logo { height: var(--logo-h, 80px); width: auto; max-width: 100%; object-fit: contain; }
+        .org-name { display: flex; align-items: center; gap: .7rem; font-size: clamp(1.25rem, 2.8vw, 2.2rem); white-space: nowrap; }
+        .org-name img { width: 1.9em; height: 1.9em; }
+        .org-name.eurosafeai { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; color: #022583; }
+        .org-name.zais { font-family: 'Geist', sans-serif; font-weight: 600; color: #020522; }
+        .org-card h4 { color: var(--navy); font-weight: 700; margin-bottom: 4px; }
+        .section .org-card p { color: var(--muted); font-size: 14px; margin: 0; }
+
+        /* 06 Contact */
+        .contact { background: var(--navy); color: var(--paper); padding: 100px 0; scroll-margin-top: 64px; }
+        .contact h2 { color: var(--paper); }
+        .contact .kicker { color: var(--sign); }
+        .contact .kicker::after { border-color: var(--sign); }
+        .contact p { color: rgba(243, 239, 228, .85); max-width: 620px; font-size: 18px; }
+        .contact-info { display: flex; flex-wrap: wrap; gap: 14px 34px; margin-top: 26px; font: 500 15px var(--cond); letter-spacing: .04em; }
+        .contact-info a, .contact-info span { color: var(--paper); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .contact-info a:hover { color: var(--sign); }
 
         /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
+        footer { background: var(--paper-2); border-top: 1px solid var(--line); padding: 34px 0; }
+        footer .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
+        .footer-links a { font: 500 12.5px var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+        .footer-links a:hover { color: var(--red); }
+        footer p { font-size: 13px; color: var(--muted); }
+
+        /* Fade-in on scroll */
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+        @media (max-width: 960px) {
+            .two { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+            .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
-
-        footer p {
-            opacity: 0.7;
+        @media (max-width: 860px) {
+            .menu { display: block; }
+            .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+                background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 16px 16px; }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 12px 6px; font-size: 14px; }
+            .nav-links .sign { margin: 8px 0 0; align-self: flex-start; }
         }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-            margin-top: 0.5rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .location-content,
-            .events-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .organizations {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .org-card {
-                grid-column: span 1;
-                min-height: 120px;
-                padding: 1rem;
-            }
-
-            /* An odd logo out in the last row takes the full width */
-            .org-card.org-text,
-            .org-card:not(.org-text):nth-child(odd):nth-last-child(3) {
-                grid-column: span 2;
-            }
-
-            .org-logo {
-                height: calc(var(--logo-h, 80px) * 0.6);
-            }
-
-            /* On narrow phones the icon moves above the name instead of overflowing */
-            .org-name {
-                font-size: 1.05rem;
-                white-space: normal;
-                flex-wrap: wrap;
-                justify-content: center;
-                text-align: center;
-                gap: 0.4rem;
-            }
-
-            .cta-buttons {
-                justify-content: center;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @media (max-width: 720px) {
+            .container { padding: 0 18px; }
+            header nav { padding: 0 16px; }
+            .legend { left: 16px; right: 16px; bottom: 16px; width: auto; padding: 16px 16px 14px; }
+            .legend .lede { font-size: 13.5px; margin-bottom: 12px; }
+            .keys { display: none; }
+            .section { padding: 72px 0; }
+            .features { grid-template-columns: minmax(0, 1fr); }
+            .logo-panel { padding: 36px 28px; }
+            .map iframe { height: 360px; }
+            .organizations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .org-card { grid-column: span 1; min-height: 120px; padding: 1rem; }
+            /* an odd logo out in the last row takes the full width */
+            .org-card.org-text, .org-card:not(.org-text):nth-child(odd):nth-last-child(3) { grid-column: span 2; }
+            .org-logo { height: calc(var(--logo-h, 80px) * .6); }
+            .org-name { font-size: 1.05rem; white-space: normal; flex-wrap: wrap; justify-content: center; text-align: center; gap: .4rem; }
+            .contact { padding: 72px 0; }
         }
     </style>
 </head>
-<body>
+<body data-mode="camp">
     <!-- STAGING:START -->
-    <a href="https://peaks-office.ch/" style="position:fixed;left:12px;bottom:12px;z-index:99999;background:#D7261E;color:#fff;font:600 12px/1 system-ui,sans-serif;letter-spacing:.03em;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">STAGING · not the live site</a>
+    <a href="https://peaks-office.ch/" style="position:fixed;right:12px;bottom:12px;z-index:99999;background:#D7261E;color:#fff;font:600 12px/1 system-ui,sans-serif;letter-spacing:.03em;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">STAGING · not the live site</a>
     <!-- STAGING:END -->
-    <!-- Header -->
+
     <header>
         <nav>
-            <a href="#home" class="logo">
-                <img src="assets/peaks-no-text.png" alt="PEAKS Logo" class="logo-img">
-                PEAKS
-            </a>
+            <a href="#home" class="brand"><img src="assets/peaks-mark.png" alt="">PEAKS</a>
+            <button class="menu" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
                 <li><a href="#location">Location</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#community">Community</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a class="sign" href="https://airtable.com/appULu9lJwVaZpFQF/pagRdsdLGTNFev8dt/form">Apply</a></li>
             </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero: a 3D relief map. Click open ground for a hill, click a mountain to make it higher, hold to keep climbing. -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text fade-in">
-                <h1>Welcome to PEAKS</h1>
-                <p class="subtitle">Join the Coworking Space in the middle of Zurich!</p>
-                
-                <div class="ea-ai-highlight">
-                    <div class="ea-ai-text">Effective Altruism <br> AI Safety <br> Biosecurity</div>
-                </div>
-                <p class="description">
-                    <span>📍</span>
-                    <span>Zeughausstrasse 31, 8004 Zurich</span>
-                </p>
-                
-                <div class="cta-buttons">
-                    <a href="https://airtable.com/appULu9lJwVaZpFQF/pagRdsdLGTNFev8dt/form" class="btn btn-primary">Apply for Coworking</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
-                </div>
-                <br><br>
-                <p class="description">
-                    <span>We offer public coworking for people interested in Effective Altruism, AI Safety or Biosecurity. If you are curious about the space, these coworking days are the perfect opportunity to check it out and get in touch with the community.</span>
-                </p>
+        <canvas id="relief" aria-label="Interactive 3D relief map. Click to raise a peak, click it again or hold to make it higher."></canvas>
+        <canvas id="overlay" aria-hidden="true"></canvas>
+        <div class="nogl">The relief map needs WebGL 2.</div>
+        <div class="legend">
+            <div class="sheet"><span>Blatt PEAKS · 1 : 25 000</span><span>Zürich</span></div>
+            <h1>Some peaks are higher than others. <em>Much higher.</em></h1>
+            <p class="lede">Impact works the same way: a few ways of doing good rise far above everything else. There are many such summits, and no single right one to climb. PEAKS is an office for people who search for the highest peaks they can reach, and then set out to climb them. People who stay open to changing paths as their map and the terrain shift, and who would rather climb together than alone.</p>
+            <ul class="keys">
+                <li><i><svg width="12" height="11"><path d="M6 1 L11 10 H1 Z" fill="#12294A"/></svg></i>Summit · click the map to raise one, click again or hold to go higher</li>
+                <li><i><svg width="30" height="4"><line x1="0" y1="2" x2="30" y2="2" stroke="#D7261E" stroke-width="2" stroke-dasharray="6 4"/></svg></i>Trail from base camp · we climb together</li>
+                <li><i><svg width="30" height="4"><line x1="0" y1="2" x2="30" y2="2" stroke="#9C7048" stroke-width="1.2"/></svg></i>Contour line · 100 m</li>
+            </ul>
+            <div class="foot">
+                <div class="scale">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000 m<div class="bar"><span></span><span></span><span></span><span></span></div></div>
+                <a class="sign" href="https://airtable.com/appULu9lJwVaZpFQF/pagRdsdLGTNFev8dt/form">Apply for coworking<small>PEAKS · Zeughausstrasse 31</small></a>
             </div>
-            <div class="hero-visual fade-in">
-                <img src="assets/peaks.png" alt="PEAKS Logo" class="hero-logo">
+        </div>
+    </section>
+    <div class="alt" id="alt"></div>
+
+    <section id="welcome" class="section">
+        <div class="container two">
+            <div class="reveal">
+                <div class="kicker">01 · Coworking</div>
+                <h2>Welcome to PEAKS</h2>
+                <p class="lead">Join the coworking space in the middle of Zurich!</p>
+                <ul class="focus"><li>Effective Altruism</li><li>AI Safety</li><li>Biosecurity</li></ul>
+                <p>We offer public coworking for people interested in Effective Altruism, AI Safety or Biosecurity. If you are curious about the space, these coworking days are the perfect opportunity to check it out and get in touch with the community.</p>
+                <p class="pin"><svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 17s6-6.2 6-10.2A6 6 0 0 0 1 6.8C1 10.8 7 17 7 17Z" fill="#D7261E"/><circle cx="7" cy="6.8" r="2.2" fill="#F3EFE4"/></svg>Zeughausstrasse 31, 8004 Zurich</p>
+                <div class="actions">
+                    <a class="sign" href="https://airtable.com/appULu9lJwVaZpFQF/pagRdsdLGTNFev8dt/form">Apply for coworking<small>Public coworking days</small></a>
+                    <a class="btn-line" href="#about">Learn more</a>
+                </div>
+            </div>
+            <figure class="frame logo-panel reveal">
+                <img src="assets/peaks-logo.png" alt="PEAKS logo">
+                <figcaption>Coworking · Zürich</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section id="location" class="section tinted">
+        <div class="container two">
+            <div class="reveal">
+                <div class="kicker">02 · Location</div>
+                <h2>Find Us in Zurich</h2>
+                <p>PEAKS is located in Zurich, Switzerland's largest city and a global hub for finance, technology, and research. Our workspace sits at the heart of the city, with easy access to Zurich's ecosystem as well as a wide variety of food options.</p>
+                <div class="address">
+                    <h3>Address</h3>
+                    <p class="addr">Zeughausstrasse 31<br>8004 Zurich, Switzerland</p>
+                    <ul>
+                        <li>Easy access via public transportation from Zurich HB and Tram stations Sihlpost/HB and Stauffacher</li>
+                        <li>Close to ETH Zurich and University of Zurich</li>
+                    </ul>
+                </div>
+                <p>Contact us in advance of your visit and for access information under <a href="mailto:team@peaks-office.ch">team@peaks-office.ch</a>.</p>
+            </div>
+            <div class="frame map reveal">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.3469469!2d8.5310775!3d47.3743889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47900a0c5a4e2a05%3A0x9a1b1b1b1b1b1b1b!2sZeughausstrasse%2031%2C%208004%20Z%C3%BCrich%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1642000000000!5m2!1sen!2sch"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="PEAKS office location"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Location Section -->
-    <section id="location" class="location">
-        <div class="container">
-            <div class="location-content">
-                <div class="location-info fade-in">
-                    <h2>Find Us in Zurich</h2>
-                    <p>
-                        PEAKS is located in Zurich, Switzerland's largest city and a global hub for 
-                        finance, technology, and research. Our workspace sits at the heart of the city, 
-                        with easy access to Zurich's ecosystem as well as a wide variety of food options.
-                    </p>
-                    <div class="location-details">
-                        <h3>Address</h3>
-                        <p class="address-main">Zeughausstrasse 31</p>
-                        <p class="address-city">8004 Zurich, Switzerland</p>
-                        <div class="location-extras">
-                            <p>Easy access via public transportation from Zurich HB and Tram stations Sihlpost/HB and Stauffacher</p>
-                            <p>Close to ETH Zurich and University of Zurich</p>
-                        </div>
-                    </div>
-                    <p>
-                        Contact us in advance of your visit and for access information under <a href="mailto:team@peaks-office.ch">team@peaks-office.ch</a>. 
-                    </p>
-                </div>
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.3469469!2d8.5310775!3d47.3743889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47900a0c5a4e2a05%3A0x9a1b1b1b1b1b1b1b!2sZeughausstrasse%2031%2C%208004%20Z%C3%BCrich%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1642000000000!5m2!1sen!2sch"
-                        width="100%" 
-                        height="500" 
-                        style="border:0; border-radius: 12px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="PEAKS Office Location">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events" class="events">
-        <div class="container">
-            <div class="section-header fade-in">
+    <section id="events" class="section">
+        <div class="container two events-grid">
+            <div class="reveal">
+                <div class="kicker">03 · Events</div>
                 <h2>Upcoming Events</h2>
+                <p>PEAKS regularly hosts events in collaboration with Zurich AI Safety, EA Zurich, the Zurich Biosecurity Hub and the broader Swiss EA community. From relaxed gatherings of like-minded people to lightning talks and discussions, our events provide opportunities to learn and connect with the community.</p>
+                <p>Want to stay updated on all events? Check out the event calendars of Zurich AI Safety, EA Zurich and the Zurich Biosecurity Hub and RSVP directly through Luma.</p>
+                <div class="actions">
+                    <a class="btn-line" href="https://luma.com/zais" target="_blank" rel="noopener">Zurich AI Safety</a>
+                    <a class="btn-line" href="https://lu.ma/eazurich?k=c" target="_blank" rel="noopener">EA Zurich</a>
+                    <a class="btn-line" href="https://luma.com/zurich-biosecurity-hub" target="_blank" rel="noopener">Zurich Biosecurity Hub</a>
+                </div>
             </div>
-            <div class="events-content fade-in">
-                <div class="events-text">
-                    <p>
-                        PEAKS regularly hosts events in collaboration with Zurich AI Safety, EA Zurich, the Zurich Biosecurity Hub and the broader Swiss EA community. 
-                        From relaxed gatherings of like-minded people to lightning talks and discussions, our events provide
-                        opportunities to learn and connect with the community.
-                    </p>
-                    <div class="events-cta">
-                        <p>Want to stay updated on all events? Check out the event calendars of Zurich AI Safety, EA Zurich and the Zurich Biosecurity Hub and RSVP directly through Luma.</p>
-                        <div class="events-buttons">
-                            <a href="https://luma.com/zais" target="_blank" class="btn btn-primary">Zurich AI Safety</a>
-                            <a href="https://lu.ma/eazurich?k=c" target="_blank" class="btn btn-secondary">EA Zurich</a>
-                            <a href="https://luma.com/zurich-biosecurity-hub" target="_blank" class="btn btn-secondary">Zurich Biosecurity Hub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="luma-embed">
-                    <iframe
-                    src="https://luma.com/embed/calendar/cal-XbfFC6HmrSKlbps/events?lt=light"
-                    width="100%"
-                    height="450"
-                    frameborder="0"
-                    style="border: 1px solid #bfcbda88; border-radius: 4px;"
-                    allowfullscreen=""
-                    aria-hidden="false"
-                    tabindex="0"
-                    ></iframe>
-                </div>
+            <div class="frame luma reveal">
+                <iframe src="https://luma.com/embed/calendar/cal-XbfFC6HmrSKlbps/events?lt=light" allowfullscreen="" aria-hidden="false" tabindex="0" title="PEAKS events calendar"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="section tinted">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="reveal">
+                <div class="kicker">04 · Why PEAKS</div>
                 <h2>Why PEAKS?</h2>
             </div>
             <div class="features">
-                <div class="feature fade-in">
-                    <div class="feature-icon">🤝</div>
+                <article class="feature reveal">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="8" cy="11" r="4"/><circle cx="26" cy="11" r="4"/><path d="M2 28c0-5 3-8 6-8s6 3 6 8M20 28c0-5 3-8 6-8s6 3 6 8"/><path d="M12 11h10" stroke="#D7261E" stroke-dasharray="3 2"/></svg>
                     <h3>Coworking</h3>
                     <p>Connect with like-minded professionals working on EA, AI Safety and Biosecurity projects over lunch and work in an environment with others.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">🎯</div>
+                </article>
+                <article class="feature reveal">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M2 29 12 11l6 10 4-6 10 14Z"/><circle cx="24" cy="6" r="3" fill="#0B7F91" stroke="none"/></svg>
                     <h3>Community</h3>
                     <p>Be part of the office community focused on making the world a better place through evidence-based approaches.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">🏢</div>
+                </article>
+                <article class="feature reveal">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><path d="M17 31s10-9.6 10-16a10 10 0 0 0-20 0c0 6.4 10 16 10 16Z"/><circle cx="17" cy="15" r="3.5" fill="#D7261E" stroke="none"/></svg>
                     <h3>Prime Location</h3>
                     <p>Our office is located in the heart of Zurich, with excellent transport connections and access to the city's thriving tech and research ecosystem.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">💡</div>
+                </article>
+                <article class="feature reveal">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="24" height="16" rx="1"/><path d="M17 21v6M10 29h14"/><path d="M10 15l4-4 3 3 5-5" stroke="#D7261E"/></svg>
                     <h3>Innovation Hub</h3>
                     <p>Access to modern facilities, meeting rooms, and work desks with monitors in a cozy office.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">🌍</div>
+                </article>
+                <article class="feature reveal">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="17" cy="17" r="13"/><path d="M4 17h26M17 4c4 4 5.5 8.5 5.5 13S21 26 17 30M17 4c-4 4-5.5 8.5-5.5 13S13 26 17 30"/><circle cx="25" cy="9" r="2.5" fill="#D7261E" stroke="none"/></svg>
                     <h3>Global Network</h3>
                     <p>Connect with the international EA, AI Safety and Biosecurity communities through events, workshops, and collaborative opportunities.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">📚</div>
+                </article>
+                <article class="feature reveal">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M17 9c-3-2.5-7-3-13-3v20c6 0 10 .5 13 3 3-2.5 7-3 13-3V6c-6 0-10 .5-13 3Z"/><path d="M17 9v20" stroke="#D7261E"/></svg>
                     <h3>Learning Environment</h3>
                     <p>Read and borrow some of our many books on EA, AI Safety and Biosecurity topics or discuss your learnings with others in our common room.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Community Section -->
-    <section id="community" class="community">
+    <section id="community" class="section">
         <div class="container">
-            <div class="community-text fade-in">
+            <div class="community-intro reveal">
+                <div class="kicker">05 · Community</div>
                 <h2>Our Community</h2>
-                <p>
-                    PEAKS hosts a diverse and talented community of researchers, professionals, and organizations
-                    working at the intersection of Effective Altruism, AI safety and biosecurity. Our members are united by a
-                    shared commitment to using evidence and reason to tackle the world's most pressing problems.
-                </p>
-                <p>
-                    From established organizations to independent researchers, our community spans multiple disciplines
-                    and approaches, creating a rich environment for collaboration and knowledge exchange.
-                </p>
+                <p>PEAKS hosts a diverse and talented community of researchers, professionals, and organizations working at the intersection of Effective Altruism, AI safety and biosecurity. Our members are united by a shared commitment to using evidence and reason to tackle the world's most pressing problems.</p>
+                <p>From established organizations to independent researchers, our community spans multiple disciplines and approaches, creating a rich environment for collaboration and knowledge exchange.</p>
             </div>
-            <div class="organizations fade-in">
-                <a href="https://www.effectivealtruism.ch/" target="_blank" class="org-card">
-                    <img src="assets/EACH.svg" alt="EACH Logo" class="org-logo" style="--logo-h: 100px">
-                </a>
-                <a href="https://www.apolloresearch.ai/" target="_blank" class="org-card">
-                    <img src="assets/Apollo.svg" alt="Apollo Logo" class="org-logo" style="--logo-h: 64px">
-                </a>
-                <a href="https://zurichbiosecurity.ch/" target="_blank" class="org-card">
-                    <img src="assets/ZBH.svg" alt="Zurich Biosecurity Hub Logo" class="org-logo" style="--logo-h: 100px">
-                </a>
-                <a href="https://epoch.ai/" target="_blank" class="org-card">
-                    <img src="assets/Epoch.svg" alt="Epoch AI Logo" class="org-logo" style="--logo-h: 48px">
-                </a>
-                <a href="https://forecastingresearch.org/" target="_blank" class="org-card">
-                    <img src="assets/FRI.svg" alt="Forecasting Research Institute Logo" class="org-logo" style="--logo-h: 44px">
-                </a>
-                <a href="https://www.pivotal-research.org/" target="_blank" class="org-card">
-                    <img src="assets/Pivotal.svg" alt="Pivotal Research Logo" class="org-logo" style="--logo-h: 60px">
-                </a>
-                <a href="https://safe.eu/" target="_blank" class="org-card">
-                    <span class="org-name eurosafeai"><img src="assets/EuroSafeAI.png" alt="">EuroSafeAI</span>
-                </a>
-                <a href="https://effektiv-spenden.org/" target="_blank" class="org-card">
-                    <img src="assets/EffektivSpenden.png" alt="Effektiv Spenden Logo" class="org-logo" style="--logo-h: 97px">
-                </a>
-                <a href="https://zurich.aisafety.ch/" target="_blank" class="org-card">
-                    <span class="org-name zais">Zurich AI Safety</span>
-                </a>
-                <div class="org-card org-text">
-                    <h4>Independent Researchers</h4>
-                    <p>Various EA Fields</p>
-                </div>
-                <div class="org-card org-text">
-                    <h4>Visitors from the Community</h4>
-                    <p>International Network</p>
-                </div>
+            <div class="organizations reveal">
+                <a href="https://www.effectivealtruism.ch/" target="_blank" rel="noopener" class="org-card"><img src="assets/EACH.svg" alt="EACH Logo" class="org-logo" style="--logo-h: 100px"></a>
+                <a href="https://www.apolloresearch.ai/" target="_blank" rel="noopener" class="org-card"><img src="assets/Apollo.svg" alt="Apollo Logo" class="org-logo" style="--logo-h: 64px"></a>
+                <a href="https://zurichbiosecurity.ch/" target="_blank" rel="noopener" class="org-card"><img src="assets/ZBH.svg" alt="Zurich Biosecurity Hub Logo" class="org-logo" style="--logo-h: 100px"></a>
+                <a href="https://epoch.ai/" target="_blank" rel="noopener" class="org-card"><img src="assets/Epoch.svg" alt="Epoch AI Logo" class="org-logo" style="--logo-h: 48px"></a>
+                <a href="https://forecastingresearch.org/" target="_blank" rel="noopener" class="org-card"><img src="assets/FRI.svg" alt="Forecasting Research Institute Logo" class="org-logo" style="--logo-h: 44px"></a>
+                <a href="https://www.pivotal-research.org/" target="_blank" rel="noopener" class="org-card"><img src="assets/Pivotal.svg" alt="Pivotal Research Logo" class="org-logo" style="--logo-h: 60px"></a>
+                <a href="https://safe.eu/" target="_blank" rel="noopener" class="org-card"><span class="org-name eurosafeai"><img src="assets/EuroSafeAI.png" alt="">EuroSafeAI</span></a>
+                <a href="https://effektiv-spenden.org/" target="_blank" rel="noopener" class="org-card"><img src="assets/EffektivSpenden.png" alt="Effektiv Spenden Logo" class="org-logo" style="--logo-h: 97px"></a>
+                <a href="https://zurich.aisafety.ch/" target="_blank" rel="noopener" class="org-card"><span class="org-name zais">Zurich AI Safety</span></a>
+                <div class="org-card org-text"><h4>Independent Researchers</h4><p>Various EA Fields</p></div>
+                <div class="org-card org-text"><h4>Visitors from the Community</h4><p>International Network</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="container">
-            <div class="fade-in">
-                <h2>Get In Touch</h2>
-                <p>Interested in joining our community or learning more about PEAKS? We'd love to hear from you.</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📧</span>
-                        <a href="mailto:team@peaks-office.ch">team@peaks-office.ch</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>📍</span>
-                        <span>Zeughausstrasse 31, 8004 Zurich</span>
-                    </div>
-                </div>
-                <div class="cta-buttons">
-                    <a href="mailto:team@peaks-office.ch" class="btn btn-primary">Contact Us</a>
-                </div>
+        <div class="container reveal">
+            <div class="kicker">06 · Contact</div>
+            <h2>Get In Touch</h2>
+            <p>Interested in joining our community or learning more about PEAKS? We'd love to hear from you.</p>
+            <div class="contact-info">
+                <a href="mailto:team@peaks-office.ch"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="1" y="1" width="16" height="12"/><path d="m1 1 8 7 8-7"/></svg>team@peaks-office.ch</a>
+                <span><svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 17s6-6.2 6-10.2A6 6 0 0 0 1 6.8C1 10.8 7 17 7 17Z" fill="#FFD200"/><circle cx="7" cy="6.8" r="2.2" fill="#12294A"/></svg>Zeughausstrasse 31, 8004 Zurich</span>
             </div>
+            <div class="actions"><a class="sign" href="mailto:team@peaks-office.ch">Contact us<small>team@peaks-office.ch</small></a></div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
+            <a href="#home" class="brand"><img src="assets/peaks-mark.png" alt="">PEAKS</a>
             <div class="footer-links">
-                <div class="contact-item">
-                    <a href="https://effectivealtruism.ch/" target="_blank">EA Switzerland</a>
-                </div>
-                <div class="contact-item">
-                    <a href="https://zurich.aisafety.ch/" target="_blank">Zurich AI Safety</a>
-                </div>
-                <div class="contact-item">
-                    <a href="https://zurichbiosecurity.ch/" target="_blank">Zurich Biosecurity Hub</a>
-                </div>
+                <a href="https://effectivealtruism.ch/" target="_blank" rel="noopener">EA Switzerland</a>
+                <a href="https://zurich.aisafety.ch/" target="_blank" rel="noopener">Zurich AI Safety</a>
+                <a href="https://zurichbiosecurity.ch/" target="_blank" rel="noopener">Zurich Biosecurity Hub</a>
             </div>
-            <p>&copy; 2025 PEAKS Zurich. A collaborative space for EA, AI Safety and Biosecurity work.</p>
+            <p>&copy; 2026 PEAKS Zurich. A collaborative space for EA, AI Safety and Biosecurity work.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Mobile menu
+        const menu = document.querySelector('.menu'), links = document.querySelector('.nav-links');
+        menu.addEventListener('click', () => {
+            const open = links.classList.toggle('open');
+            menu.setAttribute('aria-expanded', open);
         });
+        links.addEventListener('click', e => { if (e.target.closest('a')) links.classList.remove('open'); });
 
-        // Header background on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
+        // Sections fade in as they scroll into view
+        const io = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+    <script>
+// Concept A in 3D: the Landeskarte draped over a WebGL relief, seen at an angle.
+// <body data-mode="camp"> adds the PEAKS base camp, trails and rope teams; "plain" shows only the landscape.
+// The relief fills the element that holds the two canvases (the whole page, or a hero section).
+(() => {
+  const CAMP = document.body.dataset.mode === 'camp';
+  const glCanvas = document.getElementById('relief');
+  const host = glCanvas.parentElement;
+  const ov = document.getElementById('overlay');
+  const octx = ov.getContext('2d');
+  const altEl = document.getElementById('alt');
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  const MW = 2400, MD = 1700, GX = 200, GZ = 142;   // map size in world units, mesh resolution
+  const SX = MW / (GX - 1), SZ = MD / (GZ - 1);
+  const WATER = 160, TOP = 4478, VS = 0.08, MAX_PEAKS = 22;
+  const FOV = 34 * Math.PI / 180;
+  const CAMP_POS = [MW * 0.42, MD * 0.76];
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+  const gl = glCanvas.getContext('webgl2', { antialias: true });
+  if (!gl) { document.querySelector('.nogl').style.display = 'block'; return; }
 
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+  const VSRC = `#version 300 es
+  in vec2 a_xz; in float a_h; in vec3 a_n;
+  uniform mat4 u_mvp; uniform float u_vs, u_water;
+  out float v_h; out vec3 v_n; out vec2 v_xz; out float v_w;
+  void main() {
+    vec3 p = vec3(a_xz.x, max(a_h, u_water) * u_vs, a_xz.y);
+    gl_Position = u_mvp * vec4(p, 1.0);
+    v_h = a_h; v_n = a_n; v_xz = a_xz; v_w = gl_Position.w;
+  }`;
 
-        // Mobile menu toggle (basic implementation)
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
+  const FSRC = `#version 300 es
+  precision highp float;
+  in float v_h; in vec3 v_n; in vec2 v_xz; in float v_w;
+  uniform vec3 u_light; uniform vec2 u_map; uniform vec2 u_fog; uniform float u_water;
+  out vec4 o;
+  vec3 ramp(float h) {
+    vec3 c0 = vec3(214.,226.,196.)/255., c1 = vec3(230.,233.,212.)/255., c2 = vec3(241.,236.,220.)/255.,
+         c3 = vec3(234.,222.,198.)/255., c4 = vec3(219.,211.,201.)/255., c5 = vec3(236.,236.,233.)/255., c6 = vec3(252.,252.,250.)/255.;
+    if (h < 600.) return mix(c0, c1, smoothstep(160., 600., h));
+    if (h < 1200.) return mix(c1, c2, (h - 600.) / 600.);
+    if (h < 2000.) return mix(c2, c3, (h - 1200.) / 800.);
+    if (h < 2800.) return mix(c3, c4, (h - 2000.) / 800.);
+    if (h < 3500.) return mix(c4, c5, (h - 2800.) / 700.);
+    return mix(c5, c6, clamp((h - 3500.) / 800., 0., 1.));
+  }
+  // anti-aliased contour line: distance to the nearest multiple of stepm, measured in screen pixels
+  float iso(float h, float stepm, float w) {
+    float x = h / stepm;
+    float d = abs(fract(x - 0.5) - 0.5) / max(fwidth(x), 1e-5);
+    return 1.0 - smoothstep(w - 0.5, w + 0.5, d);
+  }
+  void main() {
+    vec3 paper = vec3(243.,239.,228.) / 255.;
+    vec3 c;
+    if (v_h < u_water) {
+      float dep = clamp((u_water - v_h) / 260., 0., 1.);
+      c = (vec3(170.,213.,234.) - vec3(34.,24.,6.) * dep) / 255.;
+    } else {
+      c = ramp(v_h);
+      c *= 0.68 + 0.44 * clamp(dot(normalize(v_n), u_light), 0., 1.);
+      bool ice = v_h > 3500.;
+      c = mix(c, ice ? vec3(.30,.53,.74) : vec3(.61,.44,.28), iso(v_h, 100., 0.55) * 0.55);
+      c = mix(c, ice ? vec3(.24,.47,.69) : vec3(.46,.31,.17), iso(v_h, 500., 0.95) * 0.85);
+    }
+    float sh = abs(v_h - u_water) / max(fwidth(v_h), 1e-4);
+    c = mix(c, vec3(.2,.47,.69), (1.0 - smoothstep(0.6, 1.6, sh)) * 0.9);
+    float edge = smoothstep(0., 280., min(min(v_xz.x, u_map.x - v_xz.x), min(v_xz.y, u_map.y - v_xz.y)));
+    float fog = smoothstep(u_fog.x, u_fog.y, v_w);
+    o = vec4(mix(c, paper, max(1.0 - edge, fog * 0.8)), 1.0);
+  }`;
 
-        // Form validation for email links
-        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const email = this.getAttribute('href').replace('mailto:', '');
-                if (!email.includes('@') || !email.includes('.')) {
-                    e.preventDefault();
-                    alert('Please check the email address format.');
-                }
-            });
-        });
+  function shader(type, src) {
+    const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, shader(gl.VERTEX_SHADER, VSRC));
+  gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FSRC));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const U = n => gl.getUniformLocation(prog, n);
 
-        // Basic XSS protection for any dynamic content
-        function sanitizeInput(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
+  const xz = new Float32Array(GX * GZ * 2), Hm = new Float32Array(GX * GZ), Nn = new Float32Array(GX * GZ * 3);
+  for (let j = 0; j < GZ; j++) for (let i = 0; i < GX; i++) { const k = j * GX + i; xz[k * 2] = i * SX; xz[k * 2 + 1] = j * SZ; }
+  const idx = new Uint16Array((GX - 1) * (GZ - 1) * 6);
+  for (let j = 0, o = 0; j < GZ - 1; j++) for (let i = 0; i < GX - 1; i++) {
+    const a = j * GX + i, b = a + 1, c = a + GX, d = c + 1;
+    idx.set([a, c, b, b, c, d], o); o += 6;
+  }
+  const vao = gl.createVertexArray(); gl.bindVertexArray(vao);
+  function attrib(name, data, size, usage) {
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, data, usage);
+    const loc = gl.getAttribLocation(prog, name); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, size, gl.FLOAT, false, 0, 0);
+    return buf;
+  }
+  attrib('a_xz', xz, 2, gl.STATIC_DRAW);
+  const hBuf = attrib('a_h', Hm, 1, gl.DYNAMIC_DRAW);
+  const nBuf = attrib('a_n', Nn, 3, gl.DYNAMIC_DRAW);
+  const iBuf = gl.createBuffer(); gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iBuf); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, idx, gl.STATIC_DRAW);
+  gl.enable(gl.DEPTH_TEST);
+  const L = [-0.5, 0.75, -0.45], ll = Math.hypot(...L);   // light from the north-west (north is -z)
+  gl.uniform3f(U('u_light'), L[0] / ll, L[1] / ll, L[2] / ll);
+  gl.uniform2f(U('u_map'), MW, MD);
+  gl.uniform1f(U('u_vs'), VS);
+  gl.uniform1f(U('u_water'), WATER);
+
+  // ---- camera
+  let W, H, DPR, mobile, eye, fwd, right, camUp, MVP, shiftX, shiftY, D;
+  function perspective(fovy, aspect, near, far) {
+    const f = 1 / Math.tan(fovy / 2), nf = 1 / (near - far);
+    return new Float32Array([f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, (far + near) * nf, -1, 0, 0, 2 * far * near * nf, 0]);
+  }
+  function lookAt(e, t) {
+    let z = [e[0] - t[0], e[1] - t[1], e[2] - t[2]]; let l = Math.hypot(...z); z = z.map(v => v / l);
+    let x = [z[2], 0, -z[0]]; l = Math.hypot(...x); x = x.map(v => v / l);   // cross((0,1,0), z)
+    const y = [z[1] * x[2] - z[2] * x[1], z[2] * x[0] - z[0] * x[2], z[0] * x[1] - z[1] * x[0]];
+    return new Float32Array([x[0], y[0], z[0], 0, x[1], y[1], z[1], 0, x[2], y[2], z[2], 0,
+      -(x[0] * e[0] + x[1] * e[1] + x[2] * e[2]), -(y[0] * e[0] + y[1] * e[1] + y[2] * e[2]), -(z[0] * e[0] + z[1] * e[1] + z[2] * e[2]), 1]);
+  }
+  function mul(a, b) {
+    const o = new Float32Array(16);
+    for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; }
+    return o;
+  }
+  function updateCamera(t) {
+    const yaw = -0.3 + (REDUCED ? 0 : 0.05 * Math.sin(t * 0.07));
+    const pitch = mobile ? 0.86 : 0.74;
+    const target = [MW * 0.5, 0, MD * 0.5];
+    // the camera stands south of the map (large z) and looks north, so east stays on the right
+    eye = [target[0] + D * Math.cos(pitch) * Math.sin(yaw), D * Math.sin(pitch), target[2] + D * Math.cos(pitch) * Math.cos(yaw)];
+    fwd = [target[0] - eye[0], target[1] - eye[1], target[2] - eye[2]]; const l = Math.hypot(...fwd); fwd = fwd.map(v => v / l);
+    right = [-fwd[2], 0, fwd[0]]; const r = Math.hypot(...right); right = right.map(v => v / r);
+    camUp = [right[1] * fwd[2] - right[2] * fwd[1], right[2] * fwd[0] - right[0] * fwd[2], right[0] * fwd[1] - right[1] * fwd[0]];
+    const P = perspective(FOV, W / H, 40, 9000);
+    P[8] -= shiftX; P[9] -= shiftY;   // nudge the image on screen so the relief sits beside the legend
+    MVP = mul(P, lookAt(eye, target));
+    gl.uniformMatrix4fv(U('u_mvp'), false, MVP);
+    gl.uniform2f(U('u_fog'), D * 0.95, D * 1.9);
+  }
+  function project(x, y, z) {
+    const m = MVP, w = m[3] * x + m[7] * y + m[11] * z + m[15];
+    if (w <= 1) return null;
+    return [((m[0] * x + m[4] * y + m[8] * z + m[12]) / w + 1) / 2 * W, (1 - (m[1] * x + m[5] * y + m[9] * z + m[13]) / w) / 2 * H];
+  }
+  function rayDir(sx, sy) {
+    const t = Math.tan(FOV / 2), nx = (2 * sx / W - 1 - shiftX) * t * W / H, ny = (1 - 2 * sy / H - shiftY) * t;
+    const d = [0, 1, 2].map(i => fwd[i] + right[i] * nx + camUp[i] * ny), l = Math.hypot(...d);
+    return d.map(v => v / l);
+  }
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    const r = host.getBoundingClientRect();
+    W = Math.round(r.width); H = Math.round(r.height); mobile = W < 720;
+    for (const c of [glCanvas, ov]) { c.width = W * DPR; c.height = H * DPR; c.style.width = W + 'px'; c.style.height = H + 'px'; }
+    octx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+    D = mobile ? 4300 : 2150;   // a narrow phone screen needs the camera further back to fit the map's width
+    shiftX = mobile ? 0 : 0.2; shiftY = mobile ? 0.42 : 0.04;
+  }
+
+  // ---- terrain
+  const peaks = [];
+  const NAMES = ['Alignment', 'Forecast', 'Welfare', 'Policy', 'Evals', 'Giving', 'Biosafety', 'Longview', 'Commons', 'Kindness', 'Outreach', 'Research', 'Fellowship', 'Insight'];
+  // A mountain keeps its root name as it grows; only the Swiss suffix follows its height (…hubel → …berg → …horn)
+  function nameFor(p) {
+    const h = p.target, at = a => a[Math.floor(p.r2 * a.length)];
+    if (h < 900) return (p.r1 < .5 ? 'Chli ' : '') + p.root + at(['hubel', 'egg', 'bühl']);
+    if (h < 2500) return at(['', 'Gross ', 'Hinter ']) + p.root + at(['stock', 'berg', 'grat']);
+    if (h < 4000) return p.r1 < .4 ? 'Piz ' + p.root : p.root + at(['spitz', 'firn', 'grat']);
+    return p.root + 'horn';
+  }
+  const kind = h => h >= TOP - 1 ? 'the Matterhorn' : h < 900 ? 'a hill' : h < 2500 ? 'a mountain' : 'a high peak';
+  // A click starts a hill at 280 m or adds 450 m to the mountain under it; holding keeps it climbing
+  const growth = (p, el) => Math.min(TOP, p.start + (p.start ? 450 : 280) + 1500 * Math.pow(el, 1.35));
+
+  function addPeak(x, z, h, grown) {
+    const p = { x, z, h: grown ? h : 0, target: h, start: 0, growing: !grown, t0: performance.now(),
+      root: NAMES[(Math.random() * NAMES.length) | 0], r1: Math.random(), r2: Math.random(),
+      bend: (Math.random() - .5) * .5, phase: Math.random(), name: '', dying: false, r: 40, s: 2 };
+    if (grown) p.name = nameFor(p);
+    peaks.push(p);
+    const alive = peaks.filter(q => !q.dying);
+    if (alive.length > MAX_PEAKS) alive[0].dying = true;
+    return p;
+  }
+  function seed() {
+    peaks.length = 0;
+    for (const [fx, fz, h] of [[.6, .44, 3950], [.78, .58, 2350], [.86, .3, 1250], [.5, .6, 780], [.7, .74, 520], [.34, .36, 1650]])
+      addPeak(fx * MW, fz * MD, h, true);
+  }
+
+  function computeHeights(t) {
+    const n = peaks.length;
+    for (let j = 0; j < GZ; j++) {
+      const z = j * SZ;
+      for (let i = 0; i < GX; i++) {
+        const x = i * SX;
+        let h = 300 + 215 * Math.sin(x * 0.0031 + t * 0.021 + 1.3) * Math.sin(z * 0.0043 - t * 0.017)
+              + 140 * Math.sin((x * 0.6 + z) * 0.0024 + t * 0.013) + 55 * Math.sin(x * 0.011 + z * 0.007 + 2);
+        for (let k = 0; k < n; k++) {
+          const p = peaks[k];
+          if (p.h < 1) continue;
+          const dx = x - p.x, dz = z - p.z, d2 = dx * dx + dz * dz, R = p.r;
+          if (d2 > R * R * 25) continue;
+          h += p.h * Math.exp(-Math.pow(Math.sqrt(d2) / R, p.s));
         }
+        Hm[j * GX + i] = h;
+      }
+    }
+    for (let j = 0; j < GZ; j++) for (let i = 0; i < GX; i++) {
+      const k = j * GX + i;
+      const yl = Math.max(Hm[k - (i > 0 ? 1 : 0)], WATER), yr = Math.max(Hm[k + (i < GX - 1 ? 1 : 0)], WATER);
+      const yd = Math.max(Hm[k - (j > 0 ? GX : 0)], WATER), yu = Math.max(Hm[k + (j < GZ - 1 ? GX : 0)], WATER);
+      const dx = (yr - yl) * VS / (2 * SX), dz = (yu - yd) * VS / (2 * SZ), l = Math.hypot(dx, 1, dz);
+      Nn[k * 3] = -dx / l; Nn[k * 3 + 1] = 1 / l; Nn[k * 3 + 2] = -dz / l;
+    }
+    gl.bindBuffer(gl.ARRAY_BUFFER, hBuf); gl.bufferSubData(gl.ARRAY_BUFFER, 0, Hm);
+    gl.bindBuffer(gl.ARRAY_BUFFER, nBuf); gl.bufferSubData(gl.ARRAY_BUFFER, 0, Nn);
+  }
+  function heightAt(x, z) {
+    const fx = Math.max(0, Math.min(GX - 1.001, x / SX)), fz = Math.max(0, Math.min(GZ - 1.001, z / SZ));
+    const i = fx | 0, j = fz | 0, u = fx - i, v = fz - j, k = j * GX + i;
+    return (Hm[k] * (1 - u) + Hm[k + 1] * u) * (1 - v) + (Hm[k + GX] * (1 - u) + Hm[k + GX + 1] * u) * v;
+  }
+  const groundY = (x, z) => Math.max(heightAt(x, z), WATER) * VS;
+  const onMap = (x, z) => x >= 0 && z >= 0 && x <= MW && z <= MD;
 
-        // Performance optimization: Lazy load images if any are added later
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                            observer.unobserve(img);
-                        }
-                    }
-                });
-            });
+  function pickGround(sx, sy) {
+    const d = rayDir(sx, sy);
+    for (let t = 20; t < 9000; t += 8) {
+      const x = eye[0] + d[0] * t, y = eye[1] + d[1] * t, z = eye[2] + d[2] * t;
+      if (onMap(x, z) && y <= groundY(x, z)) {
+        let a = t - 8, b = t;
+        for (let k = 0; k < 12; k++) { const m = (a + b) / 2; (eye[1] + d[1] * m <= groundY(eye[0] + d[0] * m, eye[2] + d[2] * m)) ? b = m : a = m; }
+        return [eye[0] + d[0] * b, eye[2] + d[2] * b];
+      }
+      if (y < 0) break;
+    }
+    return null;
+  }
+  function seen(x, y, z) {
+    for (let k = 1; k < 24; k++) {
+      const f = k / 24 * 0.97;
+      const px = eye[0] + (x - eye[0]) * f, py = eye[1] + (y - eye[1]) * f, pz = eye[2] + (z - eye[2]) * f;
+      if (onMap(px, pz) && py < groundY(px, pz) - 2) return false;
+    }
+    return true;
+  }
+  function screenAt(x, z, lift) {
+    const y = groundY(x, z) + lift;
+    return seen(x, y, z) ? project(x, y, z) : null;
+  }
 
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
+  // ---- overlay: summits, base camp, trails, rope teams
+  function trailPoint(p, u) {
+    const mx = (CAMP_POS[0] + p.x) / 2, mz = (CAMP_POS[1] + p.z) / 2, dx = p.x - CAMP_POS[0], dz = p.z - CAMP_POS[1];
+    const cx = mx - dz * p.bend, cz = mz + dx * p.bend, v = 1 - u;
+    return [v * v * CAMP_POS[0] + 2 * v * u * cx + u * u * p.x, v * v * CAMP_POS[1] + 2 * v * u * cz + u * u * p.z];
+  }
+  function label(text, x, y, font, color) {
+    octx.font = font; octx.lineJoin = 'round';
+    octx.lineWidth = 3; octx.strokeStyle = 'rgba(243,239,228,.92)'; octx.strokeText(text, x, y);
+    octx.fillStyle = color; octx.fillText(text, x, y);
+  }
+  function drawOverlay(t) {
+    octx.clearRect(0, 0, W, H);
+    if (CAMP) {
+      octx.setLineDash([7, 5]); octx.lineWidth = 2;
+      for (const p of peaks) {
+        if (p.h < 200 || (p.growing && !p.name)) continue;   // a brand-new hill gets its trail once you let go
+        octx.strokeStyle = `rgba(215,38,30,${p.dying ? .3 : .9})`;
+        octx.beginPath();
+        let pen = false;
+        for (let u = 0; u <= 1.0001; u += 1 / 40) {
+          const [x, z] = trailPoint(p, u), s = screenAt(x, z, 3);
+          if (!s) { pen = false; continue; }
+          pen ? octx.lineTo(s[0], s[1]) : octx.moveTo(s[0], s[1]); pen = true;
         }
-
-        // Error handling for external links
-        document.querySelectorAll('a[target="_blank"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                try {
-                    // Add rel="noopener noreferrer" for security
-                    this.setAttribute('rel', 'noopener noreferrer');
-                } catch (error) {
-                    console.warn('Error setting link attributes:', error);
-                }
-            });
-        });
-
-        // Simple analytics placeholder (replace with actual analytics if needed)
-        function trackEvent(action, category = 'General') {
-            // Placeholder for analytics tracking
-            console.log(`Event tracked: ${category} - ${action}`);
+        octx.stroke();
+      }
+      octx.setLineDash([]);
+      for (const p of peaks) {
+        if (p.h < 200 || p.dying || (p.growing && !p.name)) continue;
+        const base = (t * 0.03 + p.phase) % 1;
+        for (let m = 0; m < 3; m++) {
+          const [x, z] = trailPoint(p, Math.max(0, base - m * 0.018)), s = screenAt(x, z, 5);
+          if (!s) continue;
+          octx.beginPath(); octx.arc(s[0], s[1], 2.6, 0, Math.PI * 2);
+          octx.fillStyle = '#26241F'; octx.fill(); octx.lineWidth = 1.2; octx.strokeStyle = '#F3EFE4'; octx.stroke();
         }
+      }
+      const c = screenAt(CAMP_POS[0], CAMP_POS[1], 4);
+      if (c) {
+        octx.fillStyle = '#26241F'; octx.fillRect(c[0] - 6, c[1] - 6, 12, 12);
+        octx.fillStyle = '#D7261E'; octx.fillRect(c[0] - 2.5, c[1] - 2.5, 5, 5);
+        label('PEAKS base camp', c[0] + 11, c[1] + 1, '600 12.5px "IBM Plex Sans Condensed", sans-serif', '#26241F');
+        label('Zeughausstr. 31', c[0] + 11, c[1] + 14, '400 11px "IBM Plex Sans Condensed", sans-serif', '#26241F');
+      }
+    }
+    for (const p of peaks) {
+      if (p.h < 150) continue;
+      const s = screenAt(p.x, p.z, 6);
+      if (!s) continue;
+      octx.globalAlpha = p.dying ? Math.max(0, p.h / p.target) * .6 : 1;
+      octx.fillStyle = '#26241F';
+      octx.beginPath(); octx.moveTo(s[0], s[1] - 6); octx.lineTo(s[0] + 5.5, s[1] + 4); octx.lineTo(s[0] - 5.5, s[1] + 4); octx.closePath(); octx.fill();
+      if (p.name) {
+        label(p.name, s[0] + 9, s[1] - 1, 'italic 500 12.5px "IBM Plex Sans Condensed", sans-serif', '#26241F');
+        label(String(Math.round(p.h)), s[0] + 9, s[1] + 12, '400 11px "IBM Plex Sans Condensed", sans-serif', '#26241F');
+      }
+      octx.globalAlpha = 1;
+    }
+  }
 
-        // Track CTA button clicks
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const buttonText = this.textContent.trim();
-                trackEvent(`Button Click: ${buttonText}`, 'CTA');
-            });
-        });
+  // ---- interaction: click open ground for a hill, click a mountain to make it higher, hold to keep climbing
+  function peakNear(x, z) {
+    let best = null, bd = Infinity;
+    for (const p of peaks) {
+      if (p.dying) continue;
+      const d = Math.hypot(x - p.x, z - p.z);
+      if (d <= Math.max(110, p.r * 1.1) && d < bd) { best = p; bd = d; }
+    }
+    return best;
+  }
+  const status = p => `▲ <b>${nameFor(p)}</b> · ${Math.round(p.target).toLocaleString('de-CH')} m · ${kind(p.target)}`;
+  function showAlt(e, html) {
+    altEl.style.left = e.clientX + 'px'; altEl.style.top = e.clientY + 'px';
+    altEl.innerHTML = html;
+    clearTimeout(release.timer);
+    altEl.classList.add('on');
+  }
+
+  let active = null;
+  glCanvas.addEventListener('pointerdown', e => {
+    const rect = glCanvas.getBoundingClientRect();
+    const g = pickGround(e.clientX - rect.left, e.clientY - rect.top);
+    if (!g) return;
+    let p = peakNear(g[0], g[1]);
+    if (p && p.target >= TOP - 1) { showAlt(e, `▲ <b>${nameFor(p)}</b> is already the Matterhorn`); release.timer = setTimeout(() => altEl.classList.remove('on'), 1600); return; }
+    if (p) { p.start = p.target; p.t0 = performance.now(); p.growing = true; }
+    else p = addPeak(g[0], g[1], 0, false);
+    p.target = growth(p, 0);
+    active = p;
+    try { glCanvas.setPointerCapture(e.pointerId); } catch (_) {}
+    showAlt(e, status(p));
+  });
+  function release() {
+    if (!active) return;
+    active.target = growth(active, (performance.now() - active.t0) / 1000);
+    active.growing = false; active.name = nameFor(active);
+    altEl.innerHTML = status(active);
+    active = null;
+    clearTimeout(release.timer);
+    release.timer = setTimeout(() => altEl.classList.remove('on'), 1600);
+  }
+  // the browser took the touch over to scroll the page: undo whatever that touch had started
+  function cancel() {
+    if (!active) return;
+    if (active.start === 0) active.dying = true;
+    else { active.target = active.start; active.growing = false; }
+    active = null;
+    altEl.classList.remove('on');
+  }
+  glCanvas.addEventListener('pointerup', release);
+  glCanvas.addEventListener('pointercancel', cancel);
+
+  let last = performance.now(), clock = 0;
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!onScreen) { requestAnimationFrame(frame); return; }
+    if (!REDUCED) clock += dt;
+    for (let k = peaks.length - 1; k >= 0; k--) {
+      const p = peaks[k];
+      if (p.dying) {
+        p.h *= 0.965;
+        if (p.h < 4) { peaks.splice(k, 1); continue; }
+      } else {
+        if (p.growing) { p.target = growth(p, (now - p.t0) / 1000); altEl.innerHTML = status(p); }
+        p.h += (p.target - p.h) * 0.22;
+      }
+      p.r = 40 + Math.sqrt(Math.max(p.h, 0)) * 2.1;
+      p.s = 2 - 0.85 * Math.min(1, p.h / TOP);
+    }
+    updateCamera(clock);
+    computeHeights(clock);
+    gl.clearColor(243 / 255, 239 / 255, 228 / 255, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.drawElements(gl.TRIANGLES, idx.length, gl.UNSIGNED_SHORT, 0);
+    drawOverlay(clock);
+    requestAnimationFrame(frame);
+  }
+
+  // follow the size of the host, and stop drawing while it is scrolled out of view
+  let onScreen = true;
+  new ResizeObserver(resize).observe(host);
+  new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; }).observe(host);
+  resize(); seed();
+  requestAnimationFrame(frame);
+})();
+
     </script>
 </body>
 </html>
