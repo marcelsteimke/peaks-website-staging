@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- STAGING:START -->
+    <meta name="robots" content="noindex, nofollow">
+    <base href="/peaks-website-staging/">
+    <!-- STAGING:END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- GitHub Pages shows this page for every address that doesn't exist, at any depth, so its links start from the site root -->
+    <base href="/">
+    <title>Page not found · PEAKS Zurich</title>
+    <link rel="icon" type="image/png" href="assets/peaks-no-text-circle.png">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <style>
+        :root {
+            --paper: #F3EFE4;
+            --navy: #12294A;
+            --text: #3A362F;
+            --sign: #FFD200;
+            --teal: #0B6F7F;
+            --line: rgba(18, 41, 74, .16);
+            --cond: 'IBM Plex Sans Condensed', sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; background: var(--paper); color: var(--text);
+            font: 400 16px/1.6 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+        header { border-bottom: 1px solid var(--line); }
+        header nav { max-width: 1480px; margin: 0 auto; height: 64px; display: flex; align-items: center; padding: 0 28px; }
+        .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 800; font-size: 21px; letter-spacing: .05em; }
+        .brand img { height: 26px; width: auto; }
+        main { flex: 1; display: grid; place-items: center; padding: 40px 16px 72px; }
+        .card { max-width: 520px; padding: 30px 30px 32px; border: 1.5px solid var(--navy); box-shadow: 6px 6px 0 rgba(18, 41, 74, .14); }
+        .card svg { display: block; margin-bottom: 20px; }
+        .kicker { display: flex; align-items: center; gap: 12px; font: 600 12px var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+        .kicker::after { content: ''; width: 64px; border-top: 2px dashed var(--teal); }
+        h1 { font-weight: 800; font-size: clamp(28px, 6vw, 38px); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); margin-bottom: 14px; }
+        /* the yellow Swiss hiking signpost from the main page */
+        .sign { display: inline-flex; margin-top: 24px; text-decoration: none; color: #111; background: var(--sign);
+            padding: 10px 36px 10px 15px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%);
+            font-weight: 800; font-size: 15.5px; line-height: 1.25; transition: transform .15s; }
+        .sign:hover { transform: translateX(3px); }
+        .sign:focus-visible { outline: none; background: var(--navy); color: var(--sign); }
+        @media (max-width: 720px) {
+            header nav { padding: 0 16px; }
+            .card { padding: 22px 18px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- STAGING:START -->
+    <a href="https://peaks-office.ch/" style="position:fixed;right:12px;bottom:12px;z-index:99999;background:#D7261E;color:#fff;font:600 12px/1 system-ui,sans-serif;letter-spacing:.03em;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">STAGING · not the live site</a>
+    <!-- STAGING:END -->
+    <header>
+        <nav><a href="./" class="brand"><img src="assets/peaks-mark.png" alt="">PEAKS</a></nav>
+    </header>
+    <main>
+        <div class="card">
+            <!-- a trail that stops halfway up the mountain -->
+            <svg width="120" height="64" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+                <path d="M2 62 42 10l16 20 12-12 48 44" stroke="#12294A" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="96" cy="12" r="5" fill="#0B6F7F"/>
+                <path d="M18 62c10-4 16-9 22-14s4-9 10-12" stroke="#D7261E" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+                <path d="m52 26 7 7m0-7-7 7" stroke="#D7261E" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+            <div class="kicker">404 · Off the map</div>
+            <h1>This trail doesn't lead anywhere.</h1>
+            <p>The page you're looking for doesn't exist, or it has moved. Head back to base camp and pick another route.</p>
+            <a class="sign" href="./">Back to base camp</a>
+        </div>
+    </main>
+</body>
+</html>

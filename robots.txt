@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://peaks-office.ch/sitemap.xml
