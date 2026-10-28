@@ -665,7 +665,8 @@
 
   // ---- terrain
   const peaks = [];
-  const NAMES = ['Alignment', 'Forecast', 'Welfare', 'Policy', 'Evals', 'Giving', 'Biosafety', 'Longview', 'Commons', 'Kindness', 'Outreach', 'Research', 'Fellowship', 'Insight'];
+  const NAMES = ['Alignment', 'Forecast', 'Welfare', 'Policy', 'Evals', 'Giving', 'Biosafety', 'Longview', 'Kindness', 'Outreach', 'Research', 'Fellowship',
+    'Operations', 'Neglect', 'Utility', 'Bayes'];
   // A mountain keeps its root name as it grows; only the Swiss suffix follows its height (…hubel → …berg → …horn)
   function nameFor(p) {
     const h = p.target, at = a => a[Math.floor(p.r2 * a.length)];
