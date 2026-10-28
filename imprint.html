@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- STAGING:START -->
+    <meta name="robots" content="noindex, nofollow">
+    <!-- STAGING:END -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprint · PEAKS Zurich</title>
+    <meta name="description" content="Who runs PEAKS Zurich and how to reach us.">
+    <link rel="canonical" href="https://peaks-office.ch/imprint.html">
+    <link rel="icon" type="image/png" href="assets/peaks-no-text-circle.png">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <style>
+        :root {
+            --paper: #F3EFE4;
+            --navy: #12294A;
+            --text: #3A362F;
+            --muted: #625B4E;
+            --teal: #0B6F7F;
+            --line: rgba(18, 41, 74, .16);
+            --cond: 'IBM Plex Sans Condensed', sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--paper); color: var(--text); font: 400 16px/1.6 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+        header { border-bottom: 1px solid var(--line); }
+        header nav { max-width: 1480px; margin: 0 auto; height: 64px; display: flex; align-items: center; padding: 0 28px; }
+        .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 800; font-size: 21px; letter-spacing: .05em; }
+        .brand img { height: 26px; width: auto; }
+        main { max-width: 820px; margin: 0 auto; padding: 72px 28px 96px; }
+        .kicker { display: flex; align-items: center; gap: 12px; font: 600 12px var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+        .kicker::after { content: ''; width: 64px; border-top: 2px dashed var(--teal); }
+        h1 { font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -.02em; color: var(--navy); margin-bottom: 18px; }
+        a { color: var(--navy); text-decoration-color: var(--teal); text-underline-offset: 3px; }
+        /* the same address boxes as the location section on the main page */
+        .blocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 30px 0; }
+        .block { padding: 18px 20px; border-left: 3px solid var(--teal); background: rgba(255, 255, 255, .7); }
+        .block h2 { font: 600 11.5px var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+        .block p { color: var(--navy); line-height: 1.5; }
+        .back { display: inline-flex; margin-top: 30px; font: 600 13px var(--cond); letter-spacing: .1em; text-transform: uppercase; text-decoration: none;
+            color: var(--navy); border: 1.5px solid var(--navy); padding: 11px 16px; transition: background .15s, color .15s; }
+        .back:hover { background: var(--navy); color: var(--paper); }
+        @media (max-width: 720px) {
+            header nav { padding: 0 16px; }
+            main { padding: 48px 18px 72px; }
+            .blocks { grid-template-columns: minmax(0, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- STAGING:START -->
+    <a href="https://peaks-office.ch/" style="position:fixed;right:12px;bottom:12px;z-index:99999;background:#D7261E;color:#fff;font:600 12px/1 system-ui,sans-serif;letter-spacing:.03em;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">STAGING · not the live site</a>
+    <!-- STAGING:END -->
+    <header>
+        <nav><a href="./" class="brand"><img src="assets/peaks-mark.png" alt="">PEAKS</a></nav>
+    </header>
+    <main>
+        <div class="kicker">Legal</div>
+        <h1>Imprint</h1>
+        <p>PEAKS Zurich is run by the Zurich branch of the association Effective Altruism Geneva, which also runs EA Switzerland.</p>
+        <div class="blocks">
+            <section class="block">
+                <h2>Operator</h2>
+                <p>Effective Altruism Geneva – Zweigniederlassung Zürich<br>Zeughausstrasse 31<br>8004 Zurich, Switzerland<br>UID CHE-320.416.351</p>
+            </section>
+            <section class="block">
+                <h2>Head office</h2>
+                <p>Effective Altruism Geneva (association)<br>Rue des Photographes 2<br>1207 Geneva, Switzerland<br>UID CHE-357.229.406</p>
+            </section>
+            <section class="block">
+                <h2>Contact</h2>
+                <p><a href="mailto:team@peaks-office.ch">team@peaks-office.ch</a></p>
+            </section>
+        </div>
+        <p>How we handle personal data is described in our <a href="https://docs.google.com/document/d/1346yei4qlB5DO9ovYDOcFJdoWDvRAyc7VIySa7jWvXI/edit?tab=t.yem2ky9f19v7" target="_blank" rel="noopener">privacy policy</a>.</p>
+        <a class="back" href="./">Back to the PEAKS website</a>
+    </main>
+</body>
+</html>
