@@ -7,6 +7,7 @@
 #   ./promote-to-live.sh --push    # also commit and push, which publishes peaks-office.ch
 #
 # A broken link stops both. If another site is down and a fix can't wait: SKIP_LINK_CHECK=1 ./promote-to-live.sh --push
+# COMMIT_TRAILER="Co-Authored-By: …" adds that line to the live commit's message.
 set -euo pipefail
 
 STAGING="$(cd "$(dirname "$0")" && pwd)"
@@ -45,7 +46,7 @@ fi
 git -C "$LIVE" diff --cached --stat
 
 if [ "${1:-}" = "--push" ]; then
-  git -C "$LIVE" commit -q -m "Promote staging to live ($(git -C "$STAGING" rev-parse --short HEAD))"
+  git -C "$LIVE" commit -q -m "Promote staging to live ($(git -C "$STAGING" rev-parse --short HEAD))" ${COMMIT_TRAILER:+-m "$COMMIT_TRAILER"}
   git -C "$LIVE" push -q origin main
   echo "Pushed. peaks-office.ch updates in about a minute."
 else
