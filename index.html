@@ -90,8 +90,6 @@
         .hero { display: grid; grid-template-columns: clamp(420px, 36vw, 560px) minmax(0, 1fr); max-width: 1480px; margin: 0 auto; padding-top: 64px; }
         .hero-card { position: relative; z-index: 2; margin: 20px 0 20px 28px; padding: 24px 30px 26px; display: flex; flex-direction: column; justify-content: flex-start;
             background: rgba(243, 239, 228, .97); border: 1.5px solid var(--navy); box-shadow: 6px 6px 0 rgba(18, 41, 74, .14); }
-        .sheet { display: flex; justify-content: flex-end; font: 500 11px var(--cond); letter-spacing: .12em; text-transform: uppercase;
-            color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 16px; }
         .hero-card h1 { font-weight: 800; font-size: clamp(30px, 2.7vw, 40px); line-height: 1.03; letter-spacing: -.02em; color: var(--navy); margin-bottom: 12px; }
         .hero-card h1 em { font-style: normal; color: var(--teal); }
         .hero-card p { color: var(--text); font-size: 14.5px; line-height: 1.55; }
@@ -199,6 +197,8 @@
         .footer-links a { font: 500 12.5px var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
         .footer-links a:hover { color: var(--teal); }
         footer p { font-size: 13px; color: var(--muted); }
+        footer p a { color: inherit; text-decoration-color: var(--teal); text-underline-offset: 3px; }
+        footer p a:hover { color: var(--teal); }
 
         /* Fade-in on scroll */
         .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
@@ -243,7 +243,7 @@
             /* footer links get a tap area of about 44 px, big enough for a finger */
             footer { padding: 24px 0; }
             .footer-links { gap: 0 22px; }
-            .footer-links a { padding: 12px 0; line-height: 20px; }
+            .footer-links a, footer p a { display: inline-block; padding: 12px 0; line-height: 20px; }
         }
     </style>
 </head>
@@ -270,7 +270,6 @@
 
     <section id="home" class="hero">
         <div class="hero-card">
-            <div class="sheet"><span>Zürich</span></div>
             <h1>Some peaks are <em>much higher</em> than others.</h1>
             <p><strong>Impact works the same way:</strong> a few ways of doing good rise far above everything else. There are several such summits, and no single right one to climb. PEAKS is an office for people who search for the highest peaks they can reach, and then set out to climb them. People who stay open to changing paths as their map and the terrain shift, and who would rather climb together than alone.</p>
             <hr class="divider">
@@ -457,7 +456,7 @@
                 <a href="https://zurich.aisafety.ch/" target="_blank" rel="noopener">Zurich AI Safety</a>
                 <a href="https://zurichbiosecurity.ch/" target="_blank" rel="noopener">Zurich Biosecurity Hub</a>
             </div>
-            <p>&copy; 2026 PEAKS Zurich</p>
+            <p>&copy; 2026 PEAKS Zurich · <a href="https://docs.google.com/document/d/1346yei4qlB5DO9ovYDOcFJdoWDvRAyc7VIySa7jWvXI/edit?tab=t.yem2ky9f19v7" target="_blank" rel="noopener">Privacy policy</a></p>
         </div>
     </footer>
 
