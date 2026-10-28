@@ -512,7 +512,11 @@
 
   const MW = 2400, MD = 1700, GX = 200, GZ = 142;   // map size in world units, mesh resolution
   const SX = MW / (GX - 1), SZ = MD / (GZ - 1);
-  const WATER = 160, TOP = 4478, VS = 0.08, MAX_PEAKS = 22, TRAIL_MIN = 1000;
+  const WATER = 160, VS = 0.08, MAX_PEAKS = 22, TRAIL_MIN = 1000;
+  // Mountains grow past the Matterhorn and Switzerland's highest peak, up to Everest
+  const MATTERHORN = 4478, DUFOUR = 4634, TOP = 8849;
+  // Above the Matterhorn a mountain keeps climbing in metres but gains little more height on the map, so its summit stays in the frame
+  const shown = h => h <= MATTERHORN ? h : MATTERHORN + (h - MATTERHORN) * 0.15;
   const FOV = 34 * Math.PI / 180;
   const CAMP_POS = [MW * 0.42, MD * 0.76];
 
@@ -682,7 +686,8 @@
     const pool = free.length ? free : NAMES;
     return pool[(Math.random() * pool.length) | 0];
   }
-  const kind = h => h >= TOP - 1 ? 'the Matterhorn' : h < 900 ? 'a hill' : h < 2500 ? 'a mountain' : 'a high peak';
+  const kind = h => h >= TOP - 1 ? 'as high as Everest' : h > DUFOUR ? 'higher than anything in Switzerland' : h > MATTERHORN ? 'higher than the Matterhorn'
+    : h < 900 ? 'a hill' : h < 2500 ? 'a mountain' : 'a high peak';
   // A click starts a hill at 280 m or adds 450 m to the mountain under it; holding keeps it climbing
   const growth = (p, el) => Math.min(TOP, p.start + (p.start ? 450 : 280) + 1500 * Math.pow(el, 1.35));
 
@@ -715,7 +720,7 @@
           if (p.h < 1) continue;
           const dx = x - p.x, dz = z - p.z, d2 = dx * dx + dz * dz, R = p.r;
           if (d2 > R * R * 25) continue;
-          h += p.h * Math.exp(-Math.pow(Math.sqrt(d2) / R, p.s));
+          h += shown(p.h) * Math.exp(-Math.pow(Math.sqrt(d2) / R, p.s));
         }
         Hm[j * GX + i] = h;
       }
@@ -862,7 +867,7 @@
     const g = pickGround(sx, sy);
     if (!g) return;
     let p = peakNear(g[0], g[1]);
-    if (p && p.target >= TOP - 1) { showAlt(e, `▲ <b>${nameFor(p)}</b> is already the Matterhorn`); release.timer = setTimeout(() => altEl.classList.remove('on'), 1600); return; }
+    if (p && p.target >= TOP - 1) { showAlt(e, `▲ <b>${nameFor(p)}</b> is already as high as Everest`); release.timer = setTimeout(() => altEl.classList.remove('on'), 1600); return; }
     if (p) { p.start = p.target; p.t0 = performance.now(); p.growing = true; }
     else p = addPeak(g[0], g[1], 0, false);
     p.target = growth(p, 0);
@@ -905,7 +910,7 @@
         p.h += (p.target - p.h) * 0.22;
       }
       p.r = 40 + Math.sqrt(Math.max(p.h, 0)) * 2.1;
-      p.s = 2 - 0.85 * Math.min(1, p.h / TOP);
+      p.s = 2 - 0.85 * Math.min(1, p.h / MATTERHORN);   // flanks get steeper up to Matterhorn height, then keep that shape
     }
     updateCamera(clock);
     computeHeights(clock);
