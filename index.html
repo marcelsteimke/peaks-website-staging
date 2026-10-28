@@ -6,10 +6,23 @@
     <!-- STAGING:END -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEAKS Zurich</title>
-    <meta name="description" content="PEAKS Zurich is a collaborative coworking space for professionals working in Effective Altruism, AI Safety and Biosecurity in the heart of Zurich.">
+    <title>PEAKS Zurich · Coworking for effective altruism, AI safety &amp; biosecurity</title>
+    <meta name="description" content="PEAKS Zurich is a collaborative coworking space in the heart of Zurich for people working on effective altruism, AI safety and biosecurity.">
     <meta name="keywords" content="PEAKS, Zurich, coworking, effective altruism, AI safety, biosecurity, workspace, collaboration">
+    <link rel="canonical" href="https://peaks-office.ch/">
     <link rel="icon" type="image/png" href="assets/peaks-no-text-circle.png">
+
+    <!-- Link previews in WhatsApp, Slack, LinkedIn and others -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PEAKS Zurich">
+    <meta property="og:url" content="https://peaks-office.ch/">
+    <meta property="og:title" content="PEAKS Zurich · Coworking for effective altruism, AI safety &amp; biosecurity">
+    <meta property="og:description" content="Some peaks are much higher than others. PEAKS is a coworking office in the middle of Zurich for people who search for the highest peaks they can reach, and then set out to climb them.">
+    <meta property="og:image" content="https://peaks-office.ch/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="The PEAKS website: a relief map with the PEAKS base camp next to the headline Some peaks are much higher than others.">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://lu.ma https://luma.com https://www.google.com https://maps.google.com; frame-src 'self' https://lu.ma https://luma.com https://www.google.com; img-src 'self' data: https:;">
@@ -29,7 +42,7 @@
             --muted: #625B4E;
             --red: #D7261E;
             --sign: #FFD200;
-            --teal: #0B7F91;
+            --teal: #0B6F7F;
             --line: rgba(18, 41, 74, .16);
             --cond: 'IBM Plex Sans Condensed', sans-serif;
         }
@@ -59,6 +72,9 @@
         .sign:hover { transform: translateX(3px); }
         .nav-links .sign { margin-left: 12px; padding: 7px 28px 7px 12px; font: 700 13px 'Inter Tight', sans-serif; letter-spacing: 0; text-transform: none; color: #111; }
         .nav-links .sign:hover { color: #111; }
+        /* keyboard focus: the arrow shape cuts off any outline, so the sign turns navy instead */
+        .sign:focus-visible, .nav-links .sign:focus-visible { outline: none; background: var(--navy); color: var(--sign); }
+        .sign-mobile { display: none; }
         .btn-line { display: inline-flex; align-items: center; font: 600 13px var(--cond); letter-spacing: .1em; text-transform: uppercase;
             text-decoration: none; color: var(--navy); border: 1.5px solid var(--navy); padding: 11px 16px; transition: background .15s, color .15s; }
         .btn-line:hover { background: var(--navy); color: var(--paper); }
@@ -199,7 +215,9 @@
                 background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 16px 16px; }
             .nav-links.open { display: flex; }
             .nav-links a { padding: 12px 6px; font-size: 14px; }
-            .nav-links .sign { margin: 8px 0 0; align-self: flex-start; }
+            /* on phones the Apply sign sits in the header bar, next to the menu button */
+            .nav-links .sign { display: none; }
+            .sign-mobile { display: inline-flex; margin: 0 8px 0 auto; padding: 7px 26px 7px 12px; font: 700 13px 'Inter Tight', sans-serif; }
         }
         @media (max-width: 720px) {
             .container { padding: 0 18px; }
@@ -209,7 +227,8 @@
             .section { padding: 72px 0; }
             .ways, .features { grid-template-columns: minmax(0, 1fr); }
             .map iframe { height: 360px; }
-            .organizations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            /* rows fit their own content, so logo tiles stay low instead of matching the taller text cards */
+            .organizations { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
             .org-card { grid-column: span 1; min-height: 120px; padding: 1rem; }
             /* an odd logo out before the three text cards takes the full width */
             .org-card.org-text, .org-card:not(.org-text):nth-child(odd):nth-last-child(4) { grid-column: span 2; }
@@ -227,6 +246,7 @@
     <header>
         <nav>
             <a href="#home" class="brand"><img src="assets/peaks-mark.png" alt="">PEAKS</a>
+            <a class="sign sign-mobile" href="https://airtable.com/appULu9lJwVaZpFQF/pagRdsdLGTNFev8dt/form">Apply</a>
             <button class="menu" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -248,8 +268,8 @@
             <h2>Join us at base camp</h2>
             <p class="lead">A coworking space in the middle of Zurich, for everyone working on or curious about</p>
             <ul class="focus"><li>Effective Altruism</li><li>AI Safety</li><li>Biosecurity</li></ul>
-            <p>Our public coworking days are the perfect way to check out the space and get to know the community.</p>
-            <a class="pin" href="#location"><svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 17s6-6.2 6-10.2A6 6 0 0 0 1 6.8C1 10.8 7 17 7 17Z" fill="#0B7F91"/><circle cx="7" cy="6.8" r="2.2" fill="#F3EFE4"/></svg>Zeughausstrasse 31, 8004 Zurich</a>
+            <p>Our free public coworking days are the easiest way to get to know the space and the people here. Apply first, and we'll send you the details.</p>
+            <a class="pin" href="#location"><svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 17s6-6.2 6-10.2A6 6 0 0 0 1 6.8C1 10.8 7 17 7 17Z" fill="#0B6F7F"/><circle cx="7" cy="6.8" r="2.2" fill="#F3EFE4"/></svg>Zeughausstrasse 31, 8004 Zurich</a>
             <div class="actions">
                 <a class="sign" href="https://airtable.com/appULu9lJwVaZpFQF/pagRdsdLGTNFev8dt/form">Apply for a visit or coworking</a>
                 <a class="btn-line" href="#about">Learn more</a>
@@ -278,14 +298,14 @@
                 </div>
                 <div class="ways">
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 30V15L17 5l12 10v15Z"/><rect x="14" y="20" width="6" height="10" fill="#0B7F91" stroke="none"/></svg>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 30V15L17 5l12 10v15Z"/><rect x="14" y="20" width="6" height="10" fill="#0B6F7F" stroke="none"/></svg>
                         <h3>Residents</h3>
-                        <p>Organisations and individuals with a regular desk at PEAKS. They make up the everyday office community.</p>
+                        <p>Organizations and individuals with a regular desk at PEAKS. They make up the everyday office community.</p>
                     </article>
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="8" cy="11" r="4"/><circle cx="26" cy="11" r="4"/><path d="M2 28c0-5 3-8 6-8s6 3 6 8M20 28c0-5 3-8 6-8s6 3 6 8"/><path d="M12 11h10" stroke="#0B7F91" stroke-dasharray="3 2"/></svg>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="8" cy="11" r="4"/><circle cx="26" cy="11" r="4"/><path d="M2 28c0-5 3-8 6-8s6 3 6 8M20 28c0-5 3-8 6-8s6 3 6 8"/><path d="M12 11h10" stroke="#0B6F7F" stroke-dasharray="3 2"/></svg>
                         <h3>Coworkers</h3>
-                        <p>Already working in a high-impact field, or thinking about a career in one? Cowork with us on our public coworking days or during a research fellowship.</p>
+                        <p>Already working in a high-impact field, or thinking about a career in one? Cowork with us on our public coworking days, or while you do a remote research fellowship.</p>
                     </article>
                     <article class="card reveal">
                         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M17 4v27"/><path d="M17 7h11l3 4-3 4H17Z" fill="#FFD200"/><path d="M17 17H7l-3 4 3 4h10"/></svg>
@@ -297,33 +317,33 @@
                 <h2 class="sub reveal">Why PEAKS?</h2>
                 <div class="features">
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="8" cy="11" r="4"/><circle cx="26" cy="11" r="4"/><path d="M2 28c0-5 3-8 6-8s6 3 6 8M20 28c0-5 3-8 6-8s6 3 6 8"/><path d="M12 11h10" stroke="#0B7F91" stroke-dasharray="3 2"/></svg>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="8" cy="11" r="4"/><circle cx="26" cy="11" r="4"/><path d="M2 28c0-5 3-8 6-8s6 3 6 8M20 28c0-5 3-8 6-8s6 3 6 8"/><path d="M12 11h10" stroke="#0B6F7F" stroke-dasharray="3 2"/></svg>
                         <h3>Coworking</h3>
                         <p>Work alongside like-minded professionals on high-impact projects, and connect with them over lunch.</p>
                     </article>
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M2 29 12 11l6 10 4-6 10 14Z"/><circle cx="24" cy="6" r="3" fill="#0B7F91" stroke="none"/></svg>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M2 29 12 11l6 10 4-6 10 14Z"/><circle cx="24" cy="6" r="3" fill="#0B6F7F" stroke="none"/></svg>
                         <h3>Community</h3>
                         <p>Be part of the office community focused on making the world a better place through evidence-based approaches.</p>
                     </article>
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><path d="M17 31s10-9.6 10-16a10 10 0 0 0-20 0c0 6.4 10 16 10 16Z"/><circle cx="17" cy="15" r="3.5" fill="#0B7F91" stroke="none"/></svg>
-                        <h3>Prime Location</h3>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><path d="M17 31s10-9.6 10-16a10 10 0 0 0-20 0c0 6.4 10 16 10 16Z"/><circle cx="17" cy="15" r="3.5" fill="#0B6F7F" stroke="none"/></svg>
+                        <h3>Prime location</h3>
                         <p>Our office is located in the heart of Zurich, with excellent transport connections and access to the city's thriving tech and research ecosystem.</p>
                     </article>
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 29 17 6l14 23Z"/><rect x="14" y="21" width="6" height="8" fill="#0B7F91" stroke="none"/></svg>
-                        <h3>A Cozy Base Camp</h3>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 29 17 6l14 23Z"/><rect x="14" y="21" width="6" height="8" fill="#0B6F7F" stroke="none"/></svg>
+                        <h3>A cozy base camp</h3>
                         <p>Access to fully equipped desks with monitors in a cozy office, plus meeting rooms and comfortable break rooms.</p>
                     </article>
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="17" cy="17" r="13"/><path d="M4 17h26M17 4c4 4 5.5 8.5 5.5 13S21 26 17 30M17 4c-4 4-5.5 8.5-5.5 13S13 26 17 30"/><circle cx="25" cy="9" r="2.5" fill="#0B7F91" stroke="none"/></svg>
-                        <h3>Global Network</h3>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" aria-hidden="true"><circle cx="17" cy="17" r="13"/><path d="M4 17h26M17 4c4 4 5.5 8.5 5.5 13S21 26 17 30M17 4c-4 4-5.5 8.5-5.5 13S13 26 17 30"/><circle cx="25" cy="9" r="2.5" fill="#0B6F7F" stroke="none"/></svg>
+                        <h3>Global network</h3>
                         <p>Connect with the international effective altruism community through events, workshops, and collaborative opportunities.</p>
                     </article>
                     <article class="card reveal">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M17 9c-3-2.5-7-3-13-3v20c6 0 10 .5 13 3 3-2.5 7-3 13-3V6c-6 0-10 .5-13 3Z"/><path d="M17 9v20" stroke="#0B7F91"/></svg>
-                        <h3>Learning Environment</h3>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M17 9c-3-2.5-7-3-13-3v20c6 0 10 .5 13 3 3-2.5 7-3 13-3V6c-6 0-10 .5-13 3Z"/><path d="M17 9v20" stroke="#0B6F7F"/></svg>
+                        <h3>Learning environment</h3>
                         <p>Come by to upskill in relevant cause areas, read and borrow books, and discuss your learnings with others over lunch.</p>
                     </article>
                 </div>
@@ -337,11 +357,11 @@
             <div class="container">
                 <div class="intro reveal">
                     <div class="kicker">02 · Community</div>
-                    <h2>Our Community</h2>
+                    <h2>Our community</h2>
                     <p>PEAKS hosts a diverse and talented community of researchers, professionals and organizations, united by a shared commitment to using evidence and reason to tackle the world's most pressing problems.</p>
                 </div>
                 <div class="organizations reveal">
-                    <a href="https://www.effectivealtruism.ch/" target="_blank" rel="noopener" class="org-card"><img src="assets/EACH.svg" alt="EACH Logo" class="org-logo" style="--logo-h: 100px"></a>
+                    <a href="https://www.effectivealtruism.ch/" target="_blank" rel="noopener" class="org-card"><img src="assets/EACH.png" alt="EACH Logo" class="org-logo" style="--logo-h: 100px"></a>
                     <a href="https://www.apolloresearch.ai/" target="_blank" rel="noopener" class="org-card"><img src="assets/Apollo.svg" alt="Apollo Logo" class="org-logo" style="--logo-h: 64px"></a>
                     <a href="https://zurichbiosecurity.ch/" target="_blank" rel="noopener" class="org-card"><img src="assets/ZBH.svg" alt="Zurich Biosecurity Hub Logo" class="org-logo" style="--logo-h: 100px"></a>
                     <a href="https://epoch.ai/" target="_blank" rel="noopener" class="org-card"><img src="assets/Epoch.svg" alt="Epoch AI Logo" class="org-logo" style="--logo-h: 48px"></a>
@@ -351,19 +371,19 @@
                     <a href="https://effektiv-spenden.org/" target="_blank" rel="noopener" class="org-card"><img src="assets/EffektivSpenden.png" alt="Effektiv Spenden Logo" class="org-logo" style="--logo-h: 97px"></a>
                     <a href="https://zurich.aisafety.ch/" target="_blank" rel="noopener" class="org-card"><span class="org-name zais">Zurich AI Safety</span></a>
                     <div class="org-card org-text">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="14" cy="14" r="9"/><path d="m21 21 9 9"/><circle cx="14" cy="14" r="3" fill="#0B7F91" stroke="none"/></svg>
-                        <h4>Research Fellows</h4>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="14" cy="14" r="9"/><path d="m21 21 9 9"/><circle cx="14" cy="14" r="3" fill="#0B6F7F" stroke="none"/></svg>
+                        <h4>Research fellows</h4>
                         <p>Doing a remote research fellowship such as <a href="https://sparai.org/" target="_blank" rel="noopener">SPAR</a> or <a href="https://algoverseairesearch.org/" target="_blank" rel="noopener">Algoverse</a>? You're welcome to cowork from PEAKS while you do it.</p>
                     </div>
                     <div class="org-card org-text">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M2 13 17 6l15 7-15 7Z"/><path d="M8 16v7c3 3.5 15 3.5 18 0v-7"/><path d="M31 13v9" stroke="#0B7F91"/></svg>
-                        <h4>Fellowship Alumni</h4>
-                        <p>Alumni of fellowships like <a href="https://www.matsprogram.org/" target="_blank" rel="noopener">MATS</a>, <a href="https://www.pivotal-research.org/" target="_blank" rel="noopener">Pivotal</a> or <a href="https://erafellowship.org/" target="_blank" rel="noopener">ERA</a>: whether you're on an extension or continuing your research in other ways, you're welcome to join us.</p>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M2 13 17 6l15 7-15 7Z"/><path d="M8 16v7c3 3.5 15 3.5 18 0v-7"/><path d="M31 13v9" stroke="#0B6F7F"/></svg>
+                        <h4>Fellowship alumni</h4>
+                        <p>Done a fellowship like <a href="https://www.matsprogram.org/" target="_blank" rel="noopener">MATS</a>, <a href="https://www.pivotal-research.org/" target="_blank" rel="noopener">Pivotal</a> or <a href="https://erafellowship.org/" target="_blank" rel="noopener">ERA</a>? Whether you're on an extension or continuing your research another way, you're welcome to join us.</p>
                     </div>
                     <div class="org-card org-text">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="17" r="13"/><path d="m22 12-3.5 6.5L12 22l3.5-6.5Z" fill="#0B7F91" stroke="#0B7F91" stroke-width="1.5"/></svg>
-                        <h4>Independent Researchers &amp; Visitors</h4>
-                        <p>Independent researchers across cause areas, and visitors from the international community.</p>
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#12294A" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="17" r="13"/><path d="m22 12-3.5 6.5L12 22l3.5-6.5Z" fill="#0B6F7F" stroke="#0B6F7F" stroke-width="1.5"/></svg>
+                        <h4>Independent researchers &amp; visitors</h4>
+                        <p>Researching independently in any cause area, or visiting from abroad? You're welcome here too.</p>
                     </div>
                 </div>
             </div>
@@ -373,7 +393,7 @@
             <div class="container two">
                 <div class="reveal">
                     <div class="kicker">03 · Location</div>
-                    <h2>Find Us in Zurich</h2>
+                    <h2>Find us in Zurich</h2>
                     <p>PEAKS is located in Zurich, Switzerland's largest city and a global hub for finance, technology, and research. Our workspace sits at the heart of the city, a short walk from Zurich HB, with easy access to Zurich's ecosystem as well as a wide variety of food options.</p>
                     <div class="address">
                         <h3>Address</h3>
@@ -392,8 +412,8 @@
             <div class="container two events-grid">
                 <div class="reveal">
                     <div class="kicker">04 · Events</div>
-                    <h2>Upcoming Events</h2>
-                    <p>PEAKS regularly hosts events in collaboration with local groups and organizations and the broader Swiss effective altruism community. From relaxed gatherings of like-minded people to lightning talks and discussions, our events provide opportunities to learn and connect with the community.</p>
+                    <h2>Upcoming events</h2>
+                    <p>PEAKS regularly hosts events in collaboration with local groups, organizations and the broader Swiss effective altruism community. From relaxed gatherings of like-minded people to lightning talks and discussions, our events provide opportunities to learn and connect with the community.</p>
                     <p>Want to stay updated on all events? Check out the groups' event calendars below and RSVP directly through Luma.</p>
                     <div class="actions">
                         <a class="btn-line" href="https://luma.com/zais" target="_blank" rel="noopener">Zurich AI Safety</a>
@@ -402,7 +422,7 @@
                     </div>
                 </div>
                 <div class="frame luma reveal">
-                    <iframe src="https://luma.com/embed/calendar/cal-XbfFC6HmrSKlbps/events?lt=light" allowfullscreen="" aria-hidden="false" tabindex="0" title="PEAKS events calendar"></iframe>
+                    <iframe src="https://luma.com/embed/calendar/cal-XbfFC6HmrSKlbps/events?lt=light" allowfullscreen="" loading="lazy" aria-hidden="false" tabindex="0" title="PEAKS events calendar"></iframe>
                 </div>
             </div>
         </section>
@@ -411,7 +431,7 @@
     <section id="contact" class="contact">
         <div class="container reveal">
             <div class="kicker">05 · Contact</div>
-            <h2>Get In Touch</h2>
+            <h2>Get in touch</h2>
             <p>Have a question this website doesn't answer, or another reason to get in touch? Reach out:</p>
             <div class="contact-info">
                 <a href="mailto:team@peaks-office.ch"><svg width="22" height="17" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="1" y="1" width="16" height="12"/><path d="m1 1 8 7 8-7"/></svg>team@peaks-office.ch</a>
@@ -439,7 +459,11 @@
             const open = links.classList.toggle('open');
             menu.setAttribute('aria-expanded', open);
         });
-        links.addEventListener('click', e => { if (e.target.closest('a')) links.classList.remove('open'); });
+        links.addEventListener('click', e => {
+            if (!e.target.closest('a')) return;
+            links.classList.remove('open');
+            menu.setAttribute('aria-expanded', false);
+        });
 
         // Sections fade in as they scroll into view
         const io = new IntersectionObserver(entries => entries.forEach(e => {
@@ -898,19 +922,24 @@
   glCanvas.addEventListener('pointerup', release);
   glCanvas.addEventListener('pointercancel', cancel);
 
+  // At most 60 frames a second, and 30 on touch devices (mostly phones): the landscape moves slowly,
+  // and every frame recomputes the whole terrain, which costs battery
+  const MIN_FRAME_MS = matchMedia('(pointer: coarse)').matches ? 32 : 15;
   let last = performance.now(), clock = 0;
   function frame(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (now - last < MIN_FRAME_MS) { requestAnimationFrame(frame); return; }
+    const dt = Math.min(0.05, (now - last) / 1000), steps = dt * 60; last = now;
     if (!onScreen) { requestAnimationFrame(frame); return; }
     if (!REDUCED) clock += dt;
     for (let k = peaks.length - 1; k >= 0; k--) {
       const p = peaks[k];
+      // easing is measured in 60 fps steps, so it looks the same at any frame rate
       if (p.dying) {
-        p.h *= 0.965;
+        p.h *= Math.pow(0.965, steps);
         if (p.h < 4) { peaks.splice(k, 1); continue; }
       } else {
         if (p.growing) { p.target = growth(p, (now - p.t0) / 1000); altEl.innerHTML = status(p); }
-        p.h += (p.target - p.h) * 0.22;
+        p.h += (p.target - p.h) * (1 - Math.pow(0.78, steps));
       }
       p.r = 40 + Math.sqrt(Math.max(p.h, 0)) * 2.1;
       p.s = 2 - 0.85 * Math.min(1, p.h / MATTERHORN);   // flanks get steeper up to Matterhorn height, then keep that shape
